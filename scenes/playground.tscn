@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Materials/rock/rock_material.tres" type="Material" id=2]
+[ext_resource path="res://vfx/environment_fun.tres" type="Environment" id=3]
+[ext_resource path="res://scenes/EnemyMelee.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/EnemyRanged.tscn" type="PackedScene" id=6]
+
+[node name="World" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 17 )
+
+[node name="CollisionShape" parent="Player/player_model/Left_Hand_Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3091, 0, -15 )
+
+[node name="CollisionShape" parent="Player/player_model/Right_Hand_Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4237, 0, -15 )
+
+[node name="CollisionShape" parent="Player" index="1"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+
+[node name="Floor" parent="." instance=ExtResource( 5 )]
+transform = Transform( 8.52024, 0, 0, 0, 0.28547, 0, 0, 0, 30.4303, 0, -0.429388, -5.44628 )
+
+[node name="MeshInstance" parent="Floor" index="0"]
+transform = Transform( 4.33291, 0, 0, 0, 1.03349, 0, 0, 0, 0.707195, -0.232116, -3.503, 0.0498566 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" parent="Floor" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.503, 0 )
+
+[node name="EnemyMelee" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5609, 0, -9.6397 )
+collision_mask = 3
+
+[node name="EnemyMelee6" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4945, 0, -9.6397 )
+collision_mask = 3
+
+[node name="EnemyMelee2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6745, 0, -9.6397 )
+collision_mask = 3
+
+[node name="EnemyMelee3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3356, 0, -9.6397 )
+collision_mask = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 3 )
+
+[node name="EnemyRanged" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, -4.02331e-07, 0, 1, 0, 4.02331e-07, 0, 1, 10.5954, 0, -12.7521 )
+
+[node name="EnemyRanged2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, -2.38418e-07, 0, 1, 0, 2.38418e-07, 0, 1, 14.6294, 0, -12.7521 )
+
+[node name="EnemyRanged3" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, -15.5172, 0, -12.7521 )
+
+[node name="EnemyRanged4" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, -11.2318, 0, -12.7521 )
+
+[editable path="Player"]
+
+[editable path="Floor"]

@@ -1,0 +1,25 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=5 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Armature|Run"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Armature|Rest"
+
+[sub_resource type="AnimationNodeBlend2" id=3]
+
+[sub_resource type="AnimationNodeBlendTree" id=4]
+graph_offset = Vector2( 0, -63.5 )
+nodes/Animation/node = SubResource( 2 )
+nodes/Animation/position = Vector2( 180, 60 )
+"nodes/Animation 2/node" = SubResource( 1 )
+"nodes/Animation 2/position" = Vector2( 180, 180 )
+nodes/Rest-Run/node = SubResource( 3 )
+nodes/Rest-Run/position = Vector2( 480, 120 )
+nodes/output/position = Vector2( 720, 100 )
+node_connections = [ "output", 0, "Rest-Run", "Rest-Run", 0, "Animation", "Rest-Run", 1, "Animation 2" ]
+
+[resource]
+states/Rest-Run/node = SubResource( 4 )
+states/Rest-Run/position = Vector2( 210, 26 )
+graph_offset = Vector2( -346, -31 )

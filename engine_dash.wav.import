@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/engine_dash.wav-a5f587cf698322ae0f26f48a5110a189.sample"
+
+[deps]
+
+source_file="res://engine_dash.wav"
+dest_files=[ "res://.import/engine_dash.wav-a5f587cf698322ae0f26f48a5110a189.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

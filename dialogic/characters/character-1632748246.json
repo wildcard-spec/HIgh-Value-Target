@@ -1,0 +1,24 @@
+{
+	"color": "#ff910f0f",
+	"description": "your main contact for finding jobs",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1632748246.json",
+	"mirror_portraits": false,
+	"name": "Johnny",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": ""
+		},
+		{
+			"name": "contact+border",
+			"path": "res://Portraits/contact+border.png"
+		}
+	],
+	"scale": 100
+}

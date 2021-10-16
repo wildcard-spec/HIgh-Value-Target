@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/laser.gltf" type="PackedScene" id=1]
+[ext_resource path="res://Laser_projectile.gd" type="Script" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.12549, 1, 0, 1 )
+emission_enabled = true
+emission = Color( 0, 1, 0.0156863, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CapsuleMesh" id=2]
+material = SubResource( 1 )
+radius = 0.05
+mid_height = 0.5
+radial_segments = 8
+rings = 2
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 1, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0.0941176, 0, 1 )
+emission_energy = 1.97
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.123334
+height = 0.47658
+
+[node name="Laser_projectile" type="RigidBody"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0 )
+collision_layer = 0
+collision_mask = 5
+script = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="laser" parent="." instance=ExtResource( 1 )]
+visible = false
+
+[node name="Cylinder" parent="laser" index="0"]
+material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, 1, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, 1, 0, 0, 0 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+
+[editable path="laser"]

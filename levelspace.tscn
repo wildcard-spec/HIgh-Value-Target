@@ -1,0 +1,207 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 25.0668, 1, 24.9109 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.219608, 0.219608, 0.219608, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+size = Vector3( 50, 1, 50 )
+
+[sub_resource type="PlaneMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 1, 0.85098, 0.0588235, 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 163 )
+
+[node name="floor" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.58733, 0, -1, 60 )
+
+[node name="CollisionShape" type="CollisionShape" parent="floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 62.9989 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 62.9989 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="floor2" type="StaticBody" parent="."]
+transform = Transform( 7.53555, 0, 0, 0, 1, 0, 0, 0, 7.53555, 0, -1, -1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="floor2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="floor2"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 63, 3, -98 )
+radius = 25.4578
+height = 16.0
+sides = 16
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.169561, 0 )
+operation = 2
+radius = 33.3278
+height = 8.0
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
+operation = 2
+radius = 22.9101
+height = 6.02364
+sides = 16
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+radius = 10.6397
+height = 24.0
+sides = 7
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0 )
+radius = 19.8841
+height = 5.58676
+sides = 16
+
+[node name="CSGCylinder5" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0 )
+radius = 13.2174
+height = 5.58676
+sides = 16
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+transform = Transform( 1.29904, 0, 0.5, 0, 1, 0, -0.75, 0, 0.866025, -126, 0, -161 )
+radius = 20.169
+rings = 12
+
+[node name="CSGSphere2" type="CSGSphere" parent="CSGSphere"]
+operation = 2
+radius = 18.6913
+rings = 12
+
+[node name="CSGSphere3" type="CSGSphere" parent="CSGSphere"]
+operation = 2
+radius = 22.7919
+rings = 12
+
+[node name="CSGBox" type="CSGBox" parent="CSGSphere/CSGSphere3"]
+operation = 2
+width = 42.2068
+height = 2.36821
+depth = 46.1388
+
+[node name="CSGBox2" type="CSGBox" parent="CSGSphere/CSGSphere3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, -5.96046e-08, 0, 1, -1.54346, 20.5688, 4.01005 )
+operation = 2
+width = 42.2068
+height = 6.60848
+depth = 19.2944
+
+[node name="CSGBox3" type="CSGBox" parent="CSGSphere/CSGSphere3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, -5.96046e-08, 0, 1, 5.12733, 9.01031, -14.849 )
+operation = 2
+width = 54.5451
+height = 21.9372
+depth = 37.3881
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 3.00253, 0, 0, 0, 1, 0, 0, 0, 34.9446, -1, 0, 151 )
+visible = false
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( -2.12311, 0, -24.7095, 0, 1, 0, 2.12311, 0, -24.7095, -25, 0, 122 )
+visible = false
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( -2.12311, 0, -24.7095, 0, 1, 0, 2.12311, 0, -24.7095, -73, 0, 74 )
+visible = false
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="."]
+transform = Transform( -2.60068, 0, -9.99997, 0, 1, 0, 1.5015, 0, -17.3205, -107.442, 0, 32.4842 )
+visible = false
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 0.141421, 0, 0.141421, 0, 0.2, 0, -0.141421, 0, 0.141421, -60.6473, 2.18036, 80.3919 )
+visible = false
+width = 7.12883
+height = 10.6325
+depth = 16.0183
+
+[node name="CSGSphere" type="CSGSphere" parent="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, -4 )
+radius = 3.62913
+
+[node name="CSGSphere2" type="CSGSphere" parent="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 5 )
+radius = 3.62913
+
+[node name="CSGBox" type="CSGBox" parent="CSGBox"]
+operation = 2
+width = 11.1289
+height = 8.36007
+depth = 15.2221
+
+[node name="CSGBox2" type="CSGBox" parent="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+width = 7.33551
+height = 0.875386
+depth = 14.6784
+
+[node name="CSGBox3" type="CSGBox" parent="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87319, 0 )
+operation = 2
+width = 4.52972
+height = 5.2114
+depth = 16.7898
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="."]
+transform = Transform( 0.536766, 0, 0, 0, 0.536766, 0, 0, 0, 0.536766, 0, 1.30921, 177.588 )
+radius = 29.0758
+height = 5.15734
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 0.536766, 0, 0, 0, 0.536766, 0, 0, 0, 0.536766, 0, 0.463234, 160.934 )
+width = 8.0
+depth = 10.0
+
+[node name="CSGBox3" type="CSGBox" parent="CSGBox2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.603075, 0 )
+width = 8.0
+height = 1.0
+depth = 11.7709
+
+[node name="CSGBox4" type="CSGBox" parent="CSGBox2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.02756 )
+width = 8.0
+depth = 12.0
+
+[node name="CSGBox5" type="CSGBox" parent="CSGBox2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2.02756 )
+width = 8.0
+depth = 10.0
+
+[node name="CSGBox6" type="CSGBox" parent="CSGBox2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.47023, 2.02756 )
+width = 8.0
+height = 1.0
+depth = 8.0

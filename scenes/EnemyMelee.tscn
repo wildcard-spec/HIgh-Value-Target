@@ -1,0 +1,133 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://scenes/player_model.fbx" type="PackedScene" id=1]
+[ext_resource path="res://scenes/EnemyMelee.gd" type="Script" id=2]
+[ext_resource path="res://playAnim.tres" type="AnimationNodeBlendTree" id=3]
+[ext_resource path="res://AnimationTree.gd" type="Script" id=4]
+[ext_resource path="res://target.gd" type="Script" id=5]
+[ext_resource path="res://scenes/crosshairLeft.png" type="Texture" id=6]
+[ext_resource path="res://scenes/crosshairRight.png" type="Texture" id=7]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.921569, 1, 0, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.25, 2, 0.5 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.141176, 0.968627, 0.172549, 1 )
+
+[sub_resource type="Animation" id=4]
+length = 0.791667
+
+[sub_resource type="Animation" id=5]
+length = 0.0416667
+
+[sub_resource type="Animation" id=6]
+length = 0.833333
+
+[sub_resource type="Animation" id=7]
+length = 1.20833
+
+[sub_resource type="CapsuleShape" id=8]
+radius = 0.604898
+height = 0.980988
+
+[sub_resource type="QuadMesh" id=9]
+size = Vector2( 1.5, 1.5 )
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 1
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="QuadMesh" id=11]
+size = Vector2( 1.5, 1.5 )
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+flags_unshaded = true
+params_blend_mode = 1
+params_billboard_mode = 1
+albedo_texture = ExtResource( 7 )
+
+[sub_resource type="CylinderShape" id=13]
+radius = 16.0399
+height = 2.13311
+
+[node name="EnemyMelee" type="KinematicBody" groups=[
+"Enemy",
+"MeleeEnemy",
+]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="player_model" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+
+[node name="Armature" parent="player_model" index="0"]
+transform = Transform( 17.5152, 0, 0, 0, -2.08798e-06, 16.0357, 0, -17.5152, -1.9116e-06, 0, 1.01153, -3.4679e-10 )
+
+[node name="ToesL_end" parent="player_model/Armature/Bone005_end/Thumb02L_end/Finger03L_end/Finger13L_end/Finger23L_end/Finger33L_end/Thumb02R_end/Finger03R_end/Finger13R_end/Finger23R_end/Finger33R_end" index="0"]
+transform = Transform( 1, 0, 3.38813e-21, 0, 1, 7.10543e-15, 3.38813e-21, 0, 1, 0, 0.00269118, 7.45058e-09 )
+
+[node name="Polyhuman" parent="player_model/Armature" index="1"]
+transform = Transform( 1, 0, -3.38813e-21, 0, 1, 7.10543e-15, -3.38813e-21, 0, 1, 0, 0, 0 )
+material/0 = SubResource( 1 )
+
+[node name="BoneAttachment" type="BoneAttachment" parent="player_model/Armature" index="2"]
+transform = Transform( 0.999647, 0.0130708, 0.0231194, -0.0130708, -0.515662, 0.856692, 0.0231187, -0.856691, -0.515309, -0.0222208, -0.00803475, -0.00426146 )
+bone_name = "Finger01.R"
+
+[node name="MeshInstance" type="MeshInstance" parent="player_model/Armature/BoneAttachment"]
+transform = Transform( 0.0182899, -0.00373134, -0.00200123, 0.00396853, 0.0186636, 0.000846856, 0.00240004, 0.00231704, 0.0170654, 0.00295648, 0.0107683, 0.00296886 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player_model"]
+anims/Armature|Idle = SubResource( 4 )
+anims/Armature|Rest = SubResource( 5 )
+anims/Armature|Run = SubResource( 6 )
+anims/Armature|Walk = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1.14237, 0, 1, -4.99346e-08, 0, 0.949724, 0 )
+shape = SubResource( 8 )
+
+[node name="CharPos" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16219, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = ExtResource( 3 )
+anim_player = NodePath("../player_model/AnimationPlayer")
+active = true
+parameters/Run/blend_amount = 0.0
+script = ExtResource( 4 )
+
+[node name="TargetDisplay" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21924, 0 )
+script = ExtResource( 5 )
+
+[node name="leftCrosshair" type="MeshInstance" parent="TargetDisplay"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
+
+[node name="rightCrosshair" type="MeshInstance" parent="TargetDisplay"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 13 )
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
+
+[editable path="player_model"]

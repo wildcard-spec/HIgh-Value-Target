@@ -1,0 +1,58 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1632747805.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "border+facepng_just_page",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1632747805.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hey, Bobbs, is Johnny in the back?"
+		},
+		{
+			"action": "leaveall",
+			"character": "character-1632747805.json",
+			"event_id": "dialogic_003"
+		},
+		{
+			"action": "join",
+			"character": "character-1632748220.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "bobbypin_border",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": true
+			}
+		},
+		{
+			"character": "character-1632748220.json",
+			"event_id": "dialogic_001",
+			"portrait": "bobbypin_border",
+			"text": "Yes, come this way please."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3 - BETA",
+		"file": "timeline-1632748304.json",
+		"name": "First encounter"
+	}
+}

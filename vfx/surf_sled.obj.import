@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/surf_sled.obj-a2aa5a7442736715e9a93b09f6b4e9dc.mesh"
+
+[deps]
+
+files=[ "res://.import/surf_sled.obj-a2aa5a7442736715e9a93b09f6b4e9dc.mesh" ]
+
+source_file="res://vfx/surf_sled.obj"
+dest_files=[ "res://.import/surf_sled.obj-a2aa5a7442736715e9a93b09f6b4e9dc.mesh", "res://.import/surf_sled.obj-a2aa5a7442736715e9a93b09f6b4e9dc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

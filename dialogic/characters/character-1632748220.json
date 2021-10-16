@@ -1,0 +1,24 @@
+{
+	"color": "#ff97fcfe",
+	"description": "friendly robot bartender",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1632748220.json",
+	"mirror_portraits": false,
+	"name": "Bobbypin",
+	"nickname": "Bobbs",
+	"nickname_bool": true,
+	"offset_x": 80,
+	"offset_y": -40,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": ""
+		},
+		{
+			"name": "bobbypin_border",
+			"path": "res://Portraits/bobbypin_border.png"
+		}
+	],
+	"scale": 35
+}

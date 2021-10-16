@@ -1,0 +1,28 @@
+{
+	"color": "#ff730aa3",
+	"description": "main character",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1632747805.json",
+	"mirror_portraits": false,
+	"name": "Mannequin",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": -80,
+	"offset_y": -40,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": ""
+		},
+		{
+			"name": "",
+			"path": ""
+		},
+		{
+			"name": "border+facepng_just_page",
+			"path": "res://Portraits/border+facepng_just_page.png"
+		}
+	],
+	"scale": 35
+}
