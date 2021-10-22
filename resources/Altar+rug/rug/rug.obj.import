@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/rug.obj-29eb5de600573b6b11ebd7c29c385aaf.mesh"
+
+[deps]
+
+files=[ "res://.import/rug.obj-29eb5de600573b6b11ebd7c29c385aaf.mesh" ]
+
+source_file="res://resources/Altar+rug/rug/rug.obj"
+dest_files=[ "res://.import/rug.obj-29eb5de600573b6b11ebd7c29c385aaf.mesh", "res://.import/rug.obj-29eb5de600573b6b11ebd7c29c385aaf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

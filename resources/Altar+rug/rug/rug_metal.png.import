@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/contact+border.png-7e60dbd7a15bfea83d9ba888076d4658.stex"
+path="res://.import/rug_metal.png-3df1de87f7d0f9487a9b7e4180d2fb19.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://portraits/contact+border.png"
-dest_files=[ "res://.import/contact+border.png-7e60dbd7a15bfea83d9ba888076d4658.stex" ]
+source_file="res://resources/Altar+rug/rug/rug_metal.png"
+dest_files=[ "res://.import/rug_metal.png-3df1de87f7d0f9487a9b7e4180d2fb19.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bobbypin_border.png-3b830701d735d7880729a1ac366916af.stex"
+path="res://.import/bobbypin_border.png-c6f8ba1f6f6e8e0bca124518d1302bf8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Portraits/bobbypin_border.png"
-dest_files=[ "res://.import/bobbypin_border.png-3b830701d735d7880729a1ac366916af.stex" ]
+source_file="res://portraits/bobbypin_border.png"
+dest_files=[ "res://.import/bobbypin_border.png-c6f8ba1f6f6e8e0bca124518d1302bf8.stex" ]
 
 [params]
 

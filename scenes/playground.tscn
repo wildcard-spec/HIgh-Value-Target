@@ -1,16 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Materials/rock/rock_material.tres" type="Material" id=2]
 [ext_resource path="res://vfx/environment_fun.tres" type="Environment" id=3]
 [ext_resource path="res://scenes/EnemyMelee.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Floor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resources/Floor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/EnemyRanged.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 17 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21372, 17 )
 
 [node name="CollisionShape" parent="Player/player_model/Left_Hand_Area" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3091, 0, -15 )
@@ -19,14 +18,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3091, 0, -15 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4237, 0, -15 )
 
 [node name="CollisionShape" parent="Player" index="1"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1, 0 )
 
 [node name="Floor" parent="." instance=ExtResource( 5 )]
 transform = Transform( 8.52024, 0, 0, 0, 0.28547, 0, 0, 0, 30.4303, 0, -0.429388, -5.44628 )
 
 [node name="MeshInstance" parent="Floor" index="0"]
 transform = Transform( 4.33291, 0, 0, 0, 1.03349, 0, 0, 0, 0.707195, -0.232116, -3.503, 0.0498566 )
-material/0 = ExtResource( 2 )
 
 [node name="CollisionShape" parent="Floor" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.503, 0 )

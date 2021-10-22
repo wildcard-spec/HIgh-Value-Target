@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/border+facepng_just_page.png-5fd5c62bedf7ffef358d6f3a908d68f2.stex"
+path="res://.import/border+facepng_just_page.png-694a7cc20a275e99ed71b6db8621a244.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Portraits/border+facepng_just_page.png"
-dest_files=[ "res://.import/border+facepng_just_page.png-5fd5c62bedf7ffef358d6f3a908d68f2.stex" ]
+source_file="res://portraits/border+facepng_just_page.png"
+dest_files=[ "res://.import/border+facepng_just_page.png-694a7cc20a275e99ed71b6db8621a244.stex" ]
 
 [params]
 

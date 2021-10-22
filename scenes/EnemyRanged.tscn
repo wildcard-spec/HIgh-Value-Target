@@ -1,12 +1,15 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/EnemyRanged.gd" type="Script" id=1]
-[ext_resource path="res://AnimationTree.gd" type="Script" id=2]
+[ext_resource path="res://scripts/AnimationTree.gd" type="Script" id=2]
 [ext_resource path="res://scenes/player_model.fbx" type="PackedScene" id=3]
-[ext_resource path="res://target.gd" type="Script" id=4]
-[ext_resource path="res://playAnim.tres" type="AnimationNodeBlendTree" id=5]
+[ext_resource path="res://scripts/target.gd" type="Script" id=4]
+[ext_resource path="res://resources/playAnim.tres" type="AnimationNodeBlendTree" id=5]
 [ext_resource path="res://scenes/crosshairLeft.png" type="Texture" id=6]
 [ext_resource path="res://scenes/crosshairRight.png" type="Texture" id=7]
+
+
+
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.604898

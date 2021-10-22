@@ -42,12 +42,12 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "PlayerKinematicBody",
 "language": "GDScript",
-"path": "res://Player2.gd"
+"path": "res://scripts/Player2.gd"
 }, {
 "base": "Spatial",
 "class": "TargetDisplay",
 "language": "GDScript",
-"path": "res://target.gd"
+"path": "res://scripts/target.gd"
 } ]
 _global_script_class_icons={
 "DTS": "",
@@ -64,7 +64,7 @@ _global_script_class_icons={
 
 config/name="LITTLEMAN WORKSPACE"
 run/main_scene="res://scenes/playground.tscn"
-config/icon="res://icon.png"
+config/icon="res://Assets/icon.png"
 
 [display]
 
@@ -145,4 +145,4 @@ fire_secondary={
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://resources/default_env.tres"
