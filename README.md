@@ -1,2 +1,2 @@
-# Game1
-This is my personal project that I'm currently working on. It's a top-down shooter with RPG elements and a story in a space-fantasy setting.
+# High Value Target
+A linear top-down shooter with open-world and RPG elements set in a sci-fi setting, where you play as a professional bounty hunter.
