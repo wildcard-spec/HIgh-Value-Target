@@ -14,11 +14,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21372, 17 )
 [node name="Debug" parent="Player/player_model/leftHandle" index="0"]
 visible = false
 
+[node name="CollisionShape" parent="Player/player_model/Akimbo_Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -18 )
+
 [node name="CollisionShape" parent="Player/player_model/Left_Hand_Area" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3091, 0, -18 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3091, -4, -18 )
 
 [node name="CollisionShape" parent="Player/player_model/Right_Hand_Area" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4237, 0, -18 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4237, -4, -18 )
 
 [node name="CollisionShape" parent="Player" index="1"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1, 0 )
@@ -33,7 +36,7 @@ transform = Transform( 8.52024, 0, 0, 0, 0.28547, 0, 0, 0, 30.4303, 0, -0.429388
 transform = Transform( 4.33291, 0, 0, 0, 1.03349, 0, 0, 0, 0.707195, -0.232116, -3.503, 0.0498566 )
 
 [node name="CollisionShape" parent="Floor" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.503, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.162063, -3.503, 0.026824 )
 
 [node name="EnemyMelee" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5609, 0, -9.6397 )

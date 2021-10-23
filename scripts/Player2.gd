@@ -102,11 +102,11 @@ func _physics_process(delta):
 
 	
 	if(is_on_floor() and Input.is_action_just_pressed("jump")):
-#		velocity.y = jump_impulse
-		pass
+		velocity.y = lerp(velocity.y, jump_impulse*5 , delta * 6)
 	velocity = move_and_slide(velocity,Vector3.UP)
 	if(!is_on_floor()):
 		play_anim("Aim_Pose")
+		
 	if(!is_on_floor() and Input.is_action_just_pressed("jump")):
 		if(is_hovering == false):
 			gravity = 0
@@ -134,6 +134,8 @@ func _physics_process(delta):
 
 	if(health==0):
 		print("game over")
+	if(Input.is_action_just_pressed("reset")):
+		get_tree().reload_current_scene()
 
 
 func play_anim(name):
@@ -155,7 +157,6 @@ func movementPressed():
 func _on_proximityArea_body_entered(body):
 	if(body.is_in_group("Enemy") and body.is_in_group("MeleeEnemy")):
 		health-=25
-
 
 
 
