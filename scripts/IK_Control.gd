@@ -19,6 +19,8 @@ onready var leftHandle = Player.get_node("player_model/leftHandle")
 onready var rightHandle = Player.get_node("player_model/rightHandle")
 onready var targetLeft = leftHandle
 onready var targetRight = rightHandle
+onready var targetLeftIK = leftHandle
+onready var targetRightIK = rightHandle
 var in_combat = false
 var boneLeft: int
 var restLeft
@@ -173,15 +175,18 @@ func change_aim() -> void:
 		in_combat = false
 		return
 	if(!leftHandArray.empty()):
-		
+		leftHandle.global_transform.origin = leftHandle.global_transform.origin.linear_interpolate(leftHandArray[0].global_transform.origin,0.1)
 		targetLeft = leftHandArray[0]
 	else:
 		targetLeft = leftHandle
 	if(!rightHandArray.empty()):
 		targetRight = rightHandArray[0]
+		rightHandle.global_transform.origin = rightHandle.global_transform.origin.linear_interpolate(rightHandArray[0].global_transform.origin,0.1)
 	else:
 		targetRight = rightHandle
 	if(!akimboArray.empty()):
+		leftHandle.global_transform.origin = leftHandle.global_transform.origin.linear_interpolate(akimboArray[0].global_transform.origin,0.1)
+		rightHandle.global_transform.origin = rightHandle.global_transform.origin.linear_interpolate(akimboArray[0].global_transform.origin,0.1)
 		targetLeft = akimboArray[0]
 		targetRight = akimboArray[0]
 
@@ -190,12 +195,12 @@ func update_left() ->void:
 		boneLeft = skeleton_to_use.find_bone(lefthand)
 		restLeft = skeleton_to_use.get_bone_global_pose(boneLeft)
 		if(targetLeft.is_in_group("Enemy")):
-			target_pos_left = skeleton_to_use.global_transform.xform_inv(targetLeft.global_transform.origin+Vector3(0,1.5,0))
+			target_pos_left = skeleton_to_use.global_transform.xform_inv(targetLeftIK.global_transform.origin+Vector3(0,1.5,0))
 		else:
-			target_pos_left = skeleton_to_use.global_transform.xform_inv(targetLeft.global_transform.origin)
+			target_pos_left = skeleton_to_use.global_transform.xform_inv(targetLeftIK.global_transform.origin)
 		restLeft = restLeft.looking_at(target_pos_left, Vector3.UP)
 		rest_euler_left = restLeft.basis.get_euler()
-		self_euler_left = targetLeft.global_transform.basis.orthonormalized().get_euler()
+		self_euler_left = targetLeftIK.global_transform.basis.orthonormalized().get_euler()
 		restLeft.basis = Basis(rest_euler_left)
 		if additional_rotation_left != Vector3.ZERO:
 			restLeft.basis = restLeft.basis.rotated(restLeft.basis.x, deg2rad(additional_rotation_left.x))
@@ -214,12 +219,12 @@ func update_right() ->void:
 		boneRight = skeleton_to_use.find_bone(righthand)
 		restRight = skeleton_to_use.get_bone_global_pose(boneRight)
 		if(targetRight.is_in_group("Enemy")):
-			target_pos_right = skeleton_to_use.global_transform.xform_inv(targetRight.global_transform.origin+Vector3(0,1.5,0))
+			target_pos_right = skeleton_to_use.global_transform.xform_inv(targetRightIK.global_transform.origin+Vector3(0,1.5,0))
 		else:
-			target_pos_right = skeleton_to_use.global_transform.xform_inv(targetRight.global_transform.origin)
+			target_pos_right = skeleton_to_use.global_transform.xform_inv(targetRightIK.global_transform.origin)
 		restRight = restRight.looking_at(target_pos_right, Vector3.UP)
 		rest_euler_right = restRight.basis.get_euler()
-		self_euler_right = targetRight.global_transform.basis.orthonormalized().get_euler()
+		self_euler_right = targetRightIK.global_transform.basis.orthonormalized().get_euler()
 		restRight.basis = Basis(rest_euler_right)
 		if additional_rotation_right != Vector3.ZERO:
 			restRight.basis = restRight.basis.rotated(restRight.basis.x, deg2rad(additional_rotation_right.x))

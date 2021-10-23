@@ -11,11 +11,14 @@
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21372, 17 )
 
+[node name="Debug" parent="Player/player_model/leftHandle" index="0"]
+visible = false
+
 [node name="CollisionShape" parent="Player/player_model/Left_Hand_Area" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3091, 0, -15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3091, 0, -18 )
 
 [node name="CollisionShape" parent="Player/player_model/Right_Hand_Area" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4237, 0, -15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4237, 0, -18 )
 
 [node name="CollisionShape" parent="Player" index="1"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1, 0 )
