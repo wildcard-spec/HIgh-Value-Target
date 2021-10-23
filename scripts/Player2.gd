@@ -31,7 +31,7 @@ var direction = Vector3.ZERO
 var lastRot
 var runAim = "Run-Aim"
 var run = "Run"
-var surf = "Surf"
+var defaultPose = "Aim_Pose"
 var rayOrigin
 var rayEnd
 var is_hovering = false
@@ -71,13 +71,16 @@ func _physics_process(delta):
 			direction.z = Input.get_action_strength("move_backwards")-Input.get_action_strength("move_forwards")
 			direction = direction.rotated(Vector3.UP, deg2rad(viewRotation[1]))
 			direction = direction.normalized()
+			is_moving = true
 #			if not intersection.empty():
 #				direction = global_transform.origin.direction_to(intersection.position)
 #				direction.y = 0
 	else:
+		is_moving = false
 		direction = Vector3.ZERO
 	if direction != Vector3.ZERO:
-		is_moving = true
+#		is_moving = true
+		pass
 	#apply that to velocity
 	if(movementPressed()):
 		velocity = lerp(velocity, direction * max_speed, delta * 6)
@@ -86,26 +89,17 @@ func _physics_process(delta):
 
 	lastRot = playerGraphics.rotation.y
 	if(is_moving and in_combat):
-		if(is_sliding):
-			play_anim(surf)
-		else:	
 			play_anim(runAim)
-	elif(is_moving and !is_sliding):
+	elif(is_moving):
 		play_anim(run)
+	else:
+		play_anim(defaultPose)
 	#add gravity
 	velocity.y -= gravity * delta
 	
 	if(Input.is_action_just_pressed("dodge")):
-		if(!is_sliding):
-#			velocity = direction*dodge_speed
-			is_sliding = true
-			play_anim(surf)
-			surf_wave.set_emitting(true)
-		else:
-			play_anim(run)
-			is_sliding = false
-			surf_wave.set_emitting(false)
-			
+		pass
+
 	
 	if(is_on_floor() and Input.is_action_just_pressed("jump")):
 #		velocity.y = jump_impulse
