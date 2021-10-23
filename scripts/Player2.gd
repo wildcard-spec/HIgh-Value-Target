@@ -18,6 +18,7 @@ onready var muzzleRight = get_node("player_model/Armature/Skeleton/hand_right/gu
 onready var muzzleLeft = get_node("player_model/Armature/Skeleton/hand_left/gunLeft/muzzleLeft")
 onready var surf_wave = get_node("player_model/Sufr_wave")
 onready var pivotPoint = get_node("Pivot")
+onready var laserSound = get_node("laserSound")
 
 var in_combat
 var targetLeft
@@ -66,23 +67,23 @@ func _physics_process(delta):
 	
 	#get direction
 	if(movementPressed()):
-		if(!is_sliding):
 			direction.x = Input.get_action_strength("move_right")-Input.get_action_strength("move_left")
 			direction.z = Input.get_action_strength("move_backwards")-Input.get_action_strength("move_forwards")
 			direction = direction.rotated(Vector3.UP, deg2rad(viewRotation[1]))
 			direction = direction.normalized()
-		else:
-			if not intersection.empty():
-				direction = global_transform.origin.direction_to(intersection.position)
-				direction.y = 0
+#			if not intersection.empty():
+#				direction = global_transform.origin.direction_to(intersection.position)
+#				direction.y = 0
+	else:
+		direction = Vector3.ZERO
 	if direction != Vector3.ZERO:
 		is_moving = true
 	#apply that to velocity
 	if(movementPressed()):
-		if(!is_sliding):
-			velocity = lerp(velocity, direction * max_speed, delta * 6)
-		else:
-			velocity = lerp(velocity, direction * surf_speed, delta * 6)
+		velocity = lerp(velocity, direction * max_speed, delta * 6)
+	else:
+		velocity = lerp(velocity, direction * max_speed, delta * 6)
+
 	lastRot = playerGraphics.rotation.y
 	if(is_moving and in_combat):
 		if(is_sliding):
@@ -127,6 +128,7 @@ func _physics_process(delta):
 				muzzleLeft.add_child(l)
 				l.look_at(targetLeft.global_transform.origin+Vector3(0,1.5,0),Vector3.UP)
 				l.shoot = true
+				laserSound.play()
 	if(Input.is_action_just_pressed("fire_secondary")):
 		if(targetRight!=null):
 			if(targetRight.is_in_group("Enemy")):
@@ -134,6 +136,7 @@ func _physics_process(delta):
 				muzzleRight.add_child(la)
 				la.look_at(targetRight.global_transform.origin+Vector3(0,1.5,0),Vector3.UP)
 				la.shoot = true
+				laserSound.play()
 
 	if(health==0):
 		print("game over")

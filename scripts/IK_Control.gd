@@ -173,6 +173,7 @@ func change_aim() -> void:
 		in_combat = false
 		return
 	if(!leftHandArray.empty()):
+		
 		targetLeft = leftHandArray[0]
 	else:
 		targetLeft = leftHandle
