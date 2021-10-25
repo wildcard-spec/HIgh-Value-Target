@@ -63,11 +63,13 @@ _global_script_class_icons={
 [application]
 
 config/name="LITTLEMAN WORKSPACE"
-run/main_scene="res://scenes/playground.tscn"
+run/main_scene="res://MainMenu.tscn"
 config/icon="res://Assets/icon.png"
 
 [display]
 
+window/size/width=1366
+window/size/height=768
 window/size/always_on_top=true
 
 [editor_plugins]

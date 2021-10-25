@@ -4,21 +4,21 @@ class_name PlayerKinematicBody, "res://icons/KinematicBodyPlayer.svg"
 export var max_speed = 12
 export var dodge_speed = 55
 export var gravity = 70
-export var jump_impulse = 100
+export var jump_impulse = 15
 export var surf_speed = 25
 
-onready var playerGraphics = get_node("player_model")
 
 onready var anim = get_node("player_model/AnimationPlayer")
 onready var IK = get_node("IK_Control")
-onready var camera = $Pivot/Camera
-onready var model = $player_model
+onready var camera = get_node("Pivot/Camera")
+onready var model = get_node("player_model")
 onready var laser = preload("res://resources/Laser_projectile.tscn")
 onready var muzzleRight = get_node("player_model/Armature/Skeleton/hand_right/gunRight/muzzleRight")
 onready var muzzleLeft = get_node("player_model/Armature/Skeleton/hand_left/gunLeft/muzzleLeft")
 onready var surf_wave = get_node("player_model/Sufr_wave")
 onready var pivotPoint = get_node("Pivot")
 onready var laserSound = get_node("laserSound")
+onready var tween = get_node("Tween")
 
 var in_combat
 var targetLeft
@@ -28,7 +28,6 @@ var targetRightHealth
 var is_moving = false
 var velocity = Vector3.ZERO
 var direction = Vector3.ZERO
-var lastRot
 var runAim = "Run-Aim"
 var run = "Run"
 var defaultPose = "Aim_Pose"
@@ -45,12 +44,6 @@ func _physics_process(delta):
 	in_combat = IK.in_combat
 	targetLeft = IK.get("targetLeft")
 	targetRight = IK.get("targetRight")
-	if(targetLeft!=null):
-		if(targetLeft.is_in_group("Enemy")):
-			targetLeftHealth = targetLeft.get("health")
-	if(targetRight!=null):
-		if(targetRight.is_in_group("Enemy") and targetLeft!=null):
-			targetRightHealth = targetRight.health
 	#raycasting setup to get the mouse position
 	var space_state = get_world().direct_space_state
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -78,16 +71,13 @@ func _physics_process(delta):
 	else:
 		is_moving = false
 		direction = Vector3.ZERO
-	if direction != Vector3.ZERO:
-#		is_moving = true
-		pass
 	#apply that to velocity
-	if(movementPressed()):
+	if(is_moving):
 		velocity = lerp(velocity, direction * max_speed, delta * 6)
+#		velocity = lerp(velocity, direction * max_speed, delta * 6)
 	else:
-		velocity = lerp(velocity, direction * max_speed, delta * 6)
-
-	lastRot = playerGraphics.rotation.y
+		velocity.x = lerp(velocity.x, 0, delta * 25)
+		velocity.z = lerp(velocity.z, 0, delta * 25)
 	if(is_moving and in_combat):
 			play_anim(runAim)
 	elif(is_moving):
@@ -98,11 +88,13 @@ func _physics_process(delta):
 	velocity.y -= gravity * delta
 	
 	if(Input.is_action_just_pressed("dodge")):
-		pass
+		velocity.x = lerp(velocity.x, direction.x * 2 * dodge_speed, delta * 10)
+		velocity.z = lerp(velocity.z, direction.z * 2 * dodge_speed, delta * 10)
 
 	
 	if(is_on_floor() and Input.is_action_just_pressed("jump")):
-		velocity.y = lerp(velocity.y, jump_impulse*5 , delta * 6)
+		tween.interpolate_property(self, "translation:y",self.translation[1],self.translation[1]+jump_impulse, 1, Tween.TRANS_QUART,Tween.EASE_OUT)
+		tween.start()
 	velocity = move_and_slide(velocity,Vector3.UP)
 	if(!is_on_floor()):
 		play_anim("Aim_Pose")
@@ -119,6 +111,7 @@ func _physics_process(delta):
 		if(targetLeft!=null):
 			if(targetLeft.is_in_group("Enemy")):
 				var l = laser.instance()
+				l.passParameters(targetLeft)
 				muzzleLeft.add_child(l)
 				l.look_at(targetLeft.global_transform.origin+Vector3(0,1.5,0),Vector3.UP)
 				l.shoot = true

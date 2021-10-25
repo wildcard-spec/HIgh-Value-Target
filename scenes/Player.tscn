@@ -44,15 +44,11 @@ script = ExtResource( 4 )
 
 [node name="player_model" parent="." instance=ExtResource( 1 )]
 
-[node name="Skeleton" parent="player_model/Armature" index="0"]
-bones/8/bound_children = [ NodePath("hand_left") ]
-bones/26/bound_children = [ NodePath("hand_right") ]
-
 [node name="Polyhuman" parent="player_model/Armature/Skeleton" index="0"]
 material/0 = SubResource( 1 )
 
 [node name="hand_right" type="BoneAttachment" parent="player_model/Armature/Skeleton" index="1"]
-transform = Transform( 0.846265, -0.00485311, -0.532739, -0.518039, 0.225955, -0.824973, 0.124379, 0.974125, 0.188704, -0.312379, 1.64263, 0.609595 )
+transform = Transform( 0.70063, 0.0141479, -0.713384, -0.711241, 0.093771, -0.696666, 0.0570383, 0.995493, 0.0757615, -0.312379, 1.50716, 0.690792 )
 bone_name = "hand_r"
 
 [node name="gunRight" type="MeshInstance" parent="player_model/Armature/Skeleton/hand_right"]
@@ -64,7 +60,7 @@ material/0 = null
 transform = Transform( 1, 9.31323e-09, -2.11876e-08, 0, 1, 0, 4.65661e-10, 3.72529e-08, 1, -0.00898212, 0.362993, 0.0165361 )
 
 [node name="hand_left" type="BoneAttachment" parent="player_model/Armature/Skeleton" index="2"]
-transform = Transform( 0.846265, 0.00485298, 0.532739, 0.518039, 0.225955, -0.824973, -0.124378, 0.974125, 0.188703, 0.312379, 1.64263, 0.609595 )
+transform = Transform( 0.70063, -0.0141476, 0.713384, 0.711241, 0.0937691, -0.696665, -0.0570374, 0.995493, 0.0757597, 0.312379, 1.50716, 0.690792 )
 bone_name = "hand_l"
 
 [node name="gunLeft" type="MeshInstance" parent="player_model/Armature/Skeleton/hand_left"]
@@ -136,6 +132,8 @@ transform = Transform( 0.5, -0.55667, 0.663414, 0, 0.766044, 0.642788, -0.866025
 
 [node name="laserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="body_entered" from="player_model/Akimbo_Area" to="IK_Control" method="_on_Akimbo_Area_body_entered"]
 [connection signal="body_exited" from="player_model/Akimbo_Area" to="IK_Control" method="_on_Akimbo_Area_body_exited"]
 [connection signal="body_entered" from="player_model/Left_Hand_Area" to="IK_Control" method="_on_Left_Hand_Area_body_entered"]

@@ -8,12 +8,9 @@
 [ext_resource path="res://scenes/crosshairLeft.png" type="Texture" id=6]
 [ext_resource path="res://scenes/crosshairRight.png" type="Texture" id=7]
 
-
-
-
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.604898
-height = 0.980988
+radius = 0.750402
+height = 1.3621
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.760784, 0, 0, 1 )
@@ -56,8 +53,8 @@ params_billboard_mode = 1
 albedo_texture = ExtResource( 7 )
 
 [sub_resource type="CylinderShape" id=13]
-radius = 16.0399
-height = 2.13311
+radius = 16.5326
+height = 18.3404
 
 [node name="EnemyRanged" type="KinematicBody" groups=[
 "Enemy",

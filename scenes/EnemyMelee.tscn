@@ -8,9 +8,6 @@
 [ext_resource path="res://scenes/crosshairLeft.png" type="Texture" id=6]
 [ext_resource path="res://scenes/crosshairRight.png" type="Texture" id=7]
 
-
-
-
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.921569, 1, 0, 1 )
 
@@ -31,10 +28,6 @@ length = 0.833333
 
 [sub_resource type="Animation" id=7]
 length = 1.20833
-
-[sub_resource type="CapsuleShape" id=8]
-radius = 0.604898
-height = 0.980988
 
 [sub_resource type="QuadMesh" id=9]
 size = Vector2( 1.5, 1.5 )
@@ -58,6 +51,10 @@ albedo_texture = ExtResource( 7 )
 [sub_resource type="CylinderShape" id=13]
 radius = 16.0399
 height = 2.13311
+
+[sub_resource type="CapsuleShape" id=8]
+radius = 0.751977
+height = 1.25708
 
 [node name="EnemyMelee" type="KinematicBody" groups=[
 "Enemy",
@@ -95,10 +92,6 @@ anims/Armature|Rest = SubResource( 5 )
 anims/Armature|Run = SubResource( 6 )
 anims/Armature|Walk = SubResource( 7 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1.14237, 0, 1, -4.99346e-08, 0, 0.949724, 0 )
-shape = SubResource( 8 )
-
 [node name="CharPos" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16219, 0 )
 
@@ -123,14 +116,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 11 )
 material/0 = SubResource( 12 )
 
-[node name="Area" type="Area" parent="."]
-collision_layer = 4
+[node name="searchRange" type="Area" parent="."]
+collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape2" type="CollisionShape" parent="Area"]
+[node name="CollisionShape2" type="CollisionShape" parent="searchRange"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 13 )
-[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
-[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1.14237, 0, 1, -4.99346e-08, 0, 0.949724, 0 )
+shape = SubResource( 8 )
+[connection signal="body_entered" from="searchRange" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="searchRange" to="." method="_on_Area_body_exited"]
 
 [editable path="player_model"]
