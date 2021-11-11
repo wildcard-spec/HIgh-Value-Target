@@ -3,7 +3,7 @@ extends KinematicBody
 onready var Player = get_node("../Player")
 onready var IK = get_node("../Player/IK_Control")
 onready var laser = preload("res://scenes/Laser_projectile_enemy.tscn")
-onready var beamSpawn = get_node("player_model/BeamStartPoint")
+onready var beamSpawn = get_node("EnemyModel/BeamStartPoint")
 onready var shootTimer = get_node("ShootTimer")
 
 var health = 2 setget setHealth, getHealth

@@ -15,7 +15,6 @@ onready var model = get_node("player_model")
 onready var laser = preload("res://resources/Laser_projectile.tscn")
 onready var muzzleRight = get_node("player_model/Armature/Skeleton/hand_right/gunRight/muzzleRight")
 onready var muzzleLeft = get_node("player_model/Armature/Skeleton/hand_left/gunLeft/muzzleLeft")
-onready var surf_wave = get_node("player_model/Sufr_wave")
 onready var pivotPoint = get_node("Pivot")
 onready var laserSound = get_node("laserSound")
 onready var tween = get_node("Tween")
@@ -29,7 +28,7 @@ var is_moving = false
 var velocity = Vector3.ZERO
 var direction = Vector3.ZERO
 var runAim = "Run-Aim"
-var run = "Run"
+var run = "Run_2nd_iteration"
 var defaultPose = "Aim_Pose"
 var rayOrigin
 var rayEnd
@@ -56,7 +55,7 @@ func _physics_process(delta):
 		model.look_at(Vector3(pos.x,translation.y,pos.z),Vector3.UP)
 	
 	if(Input.is_action_just_pressed("debug")):
-		print("gay")
+		print(in_combat)
 	
 	#get direction
 	if(movementPressed()):
@@ -113,17 +112,21 @@ func _physics_process(delta):
 				var l = laser.instance()
 				l.passParameters(targetLeft)
 				muzzleLeft.add_child(l)
-				l.look_at(targetLeft.global_transform.origin+Vector3(0,1.5,0),Vector3.UP)
+				l.look_at(targetLeft.global_transform.origin+Vector3(0,2,0),Vector3.UP)
 				l.shoot = true
 				laserSound.play()
+		else:
+			pass
 	if(Input.is_action_just_pressed("fire_secondary")):
 		if(targetRight!=null):
 			if(targetRight.is_in_group("Enemy")):
 				var la = laser.instance()
 				muzzleRight.add_child(la)
-				la.look_at(targetRight.global_transform.origin+Vector3(0,1.5,0),Vector3.UP)
+				la.look_at(targetRight.global_transform.origin+Vector3(0,2,0),Vector3.UP)
 				la.shoot = true
 				laserSound.play()
+		else:
+			pass
 
 	if(health==0):
 		print("game over")

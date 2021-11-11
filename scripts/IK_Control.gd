@@ -57,13 +57,17 @@ func _ready():
 
 
 func _process(_delta):
-	
-	change_aim()
-	update_skeleton()
+	if(Input.is_action_just_pressed("debug2")):
+		clearBonePose()
+	if(!in_combat):
+		clearBonePose()
+	else:
+		change_aim()
+		update_skeleton()
 
 func _physics_process(_delta):
 	if(!in_combat):
-		clear()
+		clearBonePose()
 	else:
 		change_aim()
 		update_skeleton()
@@ -272,7 +276,7 @@ func _set_skeleton_path(new_value):
 		if debug_messages:
 			print(name, " - IK_LookAt: No Nodepath selected for skeleton_path!")
 
-func clear():
+func clearBonePose():
 	if(skeleton_to_use!=null):
 		skeleton_to_use.clear_bones_global_pose_override()
 

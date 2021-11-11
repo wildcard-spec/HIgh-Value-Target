@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/player_model_backup_exportspace_reversed.gltf-8144228e8fd4876aaf2ab9cc159bd380.scn"
+path="res://.import/player_model2.gltf-93be1c97a30b33050c52ff31cbb3ada8.scn"
 
 [deps]
 
-source_file="res://scenes/player_model_backup_exportspace_reversed.gltf"
-dest_files=[ "res://.import/player_model_backup_exportspace_reversed.gltf-8144228e8fd4876aaf2ab9cc159bd380.scn" ]
+source_file="res://materials/player_model2.gltf"
+dest_files=[ "res://.import/player_model2.gltf-93be1c97a30b33050c52ff31cbb3ada8.scn" ]
 
 [params]
 

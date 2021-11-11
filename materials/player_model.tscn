@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://materials/Plate Metal.material" type="Material" id=1]
+[ext_resource path="res://materials/player_model2.gltf" type="PackedScene" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+emission_enabled = true
+emission = Color( 0.972549, 1, 0.792157, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="player_model" instance=ExtResource( 2 )]
+
+[node name="BoneAttachment" parent="Armature/Skeleton" index="0"]
+transform = Transform( 0.999391, -0.0263754, 0.0228745, 0.0341536, 0.874484, -0.48385, -0.0072416, 0.484336, 0.874852, -0.0223007, 1.58639, 0.421821 )
+
+[node name="BoneAttachment 2" parent="Armature/Skeleton" index="1"]
+transform = Transform( 0.694099, -0.658901, 0.289956, 0.590125, 0.290116, -0.753381, 0.412282, 0.694033, 0.590204, 0.257103, 1.30815, 0.680229 )
+
+[node name="Coat002" parent="Armature/Skeleton/BoneAttachment 2" index="0"]
+transform = Transform( -0.10774, 0.909587, 0.405113, 1.16121, 0.0830595, 0.0405812, 0.00380617, 0.407127, -0.913366, 0.0312867, 0.170558, 0.0117029 )
+material/0 = ExtResource( 1 )
+
+[node name="BoneAttachment 3" parent="Armature/Skeleton" index="2"]
+transform = Transform( -0.322684, 0.164644, -0.932077, -0.844318, -0.495144, 0.204839, -0.427787, 0.853068, 0.298787, 0.199971, 1.47997, 0.38421 )
+
+[node name="Coat001" parent="Armature/Skeleton/BoneAttachment 3" index="0"]
+material/0 = ExtResource( 1 )
+
+[node name="BoneAttachment 4" parent="Armature/Skeleton" index="3"]
+transform = Transform( 0.766118, -0.407074, -0.497347, -0.175615, -0.876982, 0.447282, -0.618241, -0.25533, -0.74336, -0.245398, 1.3758, 0.0154394 )
+
+[node name="Coat004" parent="Armature/Skeleton/BoneAttachment 4" index="0"]
+material/0 = ExtResource( 1 )
+
+[node name="BoneAttachment 5" parent="Armature/Skeleton" index="4"]
+transform = Transform( -0.99939, -0.030805, 0.016477, -0.00741741, -0.273788, -0.961762, 0.0341382, -0.961297, 0.273392, -0.234708, 1.47081, 0.349015 )
+
+[node name="Coat003" parent="Armature/Skeleton/BoneAttachment 5" index="0"]
+material/0 = ExtResource( 1 )
+
+[node name="BoneAttachment 6" parent="Armature/Skeleton" index="5"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="BoneAttachment 7" parent="Armature/Skeleton" index="6"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="BoneAttachment 8" parent="Armature/Skeleton" index="7"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="Plane013" parent="Armature/Skeleton/BoneAttachment 8/Plane017" index="0"]
+material/0 = SubResource( 1 )
+
+[node name="BoneAttachment 9" parent="Armature/Skeleton" index="8"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="BoneAttachment 10" parent="Armature/Skeleton" index="9"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="BoneAttachment 11" parent="Armature/Skeleton" index="10"]
+transform = Transform( -0.995084, 0.0473887, 0.0873606, -0.0866965, 0.0159731, -0.996119, -0.0486025, -0.998751, -0.0117837, 0.123364, 0.548926, 0.0850702 )
+
+[node name="Plane005" parent="Armature/Skeleton/BoneAttachment 11" index="0"]
+material/0 = ExtResource( 1 )
+
+[node name="BoneAttachment 12" parent="Armature/Skeleton" index="11"]
+transform = Transform( -0.991249, 0.117137, -0.061444, -0.109272, -0.986901, -0.118716, -0.0745467, -0.110958, 0.99104, 0.0730207, 0.97308, 0.132758 )
+
+[node name="Plane" parent="Armature/Skeleton/BoneAttachment 12" index="0"]
+material/0 = ExtResource( 1 )
+
+[node name="BoneAttachment 13" parent="Armature/Skeleton" index="12"]
+transform = Transform( -0.991249, 0.117137, -0.061444, -0.109272, -0.986901, -0.118716, -0.0745467, -0.110958, 0.99104, 0.0730207, 0.97308, 0.132758 )
+
+[node name="BoneAttachment 14" parent="Armature/Skeleton" index="13"]
+transform = Transform( -0.996834, -0.0275741, -0.0750811, 0.0390923, -0.986911, -0.156439, -0.0697878, -0.158891, 0.984844, -0.133729, 0.620222, 0.379493 )
+
+[node name="Plane009" parent="Armature/Skeleton/BoneAttachment 14" index="0"]
+material/0 = ExtResource( 1 )
+
+[node name="BoneAttachment 15" parent="Armature/Skeleton" index="14"]
+transform = Transform( -0.991186, -0.132347, 0.010582, 0.114174, -0.808894, 0.576769, -0.0677759, 0.572859, 0.81686, -0.0768486, 0.967871, 0.133287 )
+
+[node name="BoneAttachment 16" parent="Armature/Skeleton" index="15"]
+transform = Transform( -0.991186, -0.132347, 0.010582, 0.114174, -0.808894, 0.576769, -0.0677759, 0.572859, 0.81686, -0.0768486, 0.967871, 0.133287 )
+
+[node name="Plane008" parent="Armature/Skeleton/BoneAttachment 16" index="0"]
+material/0 = ExtResource( 1 )
