@@ -57,6 +57,8 @@ func _physics_process(delta):
 	if(Input.is_action_just_pressed("debug")):
 		print(in_combat)
 	
+	
+	
 	#get direction
 	if(movementPressed()):
 			direction.x = Input.get_action_strength("move_right")-Input.get_action_strength("move_left")
@@ -132,7 +134,8 @@ func _physics_process(delta):
 		print("game over")
 	if(Input.is_action_just_pressed("reset")):
 		get_tree().reload_current_scene()
-
+	if(Input.is_action_just_pressed("ui_cancel")):
+		get_tree().change_scene("res://MainMenu.tscn")
 
 func play_anim(name):
 #	var anim_name = name.resource_path.get_file().trim_suffix('.tres')

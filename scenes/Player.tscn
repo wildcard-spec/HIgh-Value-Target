@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://materials/player_model.tscn" type="PackedScene" id=1]
+[ext_resource path="res://materials/Turquoise Material.material" type="Material" id=2]
 [ext_resource path="res://scenes/laser.wav" type="AudioStream" id=3]
 [ext_resource path="res://scripts/Player2.gd" type="Script" id=4]
 [ext_resource path="res://scripts/IK_Control.gd" type="Script" id=5]
@@ -46,6 +47,9 @@ script = ExtResource( 4 )
 
 [node name="BoneAttachment" parent="player_model/Armature/Skeleton" index="0"]
 transform = Transform( 0.999391, -0.0263754, 0.0228745, 0.0341536, 0.874484, -0.48385, -0.0072416, 0.484336, 0.874852, -0.0223007, 1.58639, 0.421821 )
+
+[node name="Cube002" parent="player_model/Armature/Skeleton/BoneAttachment" index="0"]
+material/0 = ExtResource( 2 )
 
 [node name="BoneAttachment 2" parent="player_model/Armature/Skeleton" index="1"]
 transform = Transform( 0.694099, -0.658901, 0.289956, 0.590125, 0.290116, -0.753381, 0.412282, 0.694033, 0.590204, 0.257103, 1.30815, 0.680229 )
@@ -120,6 +124,7 @@ transform = Transform( 0.999999, 4.89876e-07, 4.98723e-07, -1.28523e-07, 0.99999
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.364243, 1.54943, -1.29951 )
 
 [node name="Debug" type="MeshInstance" parent="player_model/leftHandle"]
+visible = false
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
@@ -128,6 +133,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.303532, 1.54943, -1.34095 )
 
 [node name="Debug2" type="MeshInstance" parent="player_model/rightHandle"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.667775, 0, 0.04144 )
+visible = false
 mesh = SubResource( 2 )
 material/0 = SubResource( 4 )
 

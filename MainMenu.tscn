@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/MainMenu/label_new_game.png" type="Texture" id=1]
 [ext_resource path="res://UI/MainMenu/Template.png" type="Texture" id=2]
@@ -7,6 +7,17 @@
 [ext_resource path="res://UI/MainMenu/label_options.png" type="Texture" id=5]
 [ext_resource path="res://UI/MainMenu/arena_label.png" type="Texture" id=6]
 [ext_resource path="res://MainMenu.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFontData" id=12]
+font_path = "res://fonts/commando.ttf"
+
+[sub_resource type="DynamicFont" id=13]
+size = 53
+extra_spacing_top = 7
+font_data = SubResource( 12 )
+
+[sub_resource type="Theme" id=14]
+default_font = SubResource( 13 )
 
 [node name="CenterContainer2" type="CenterContainer"]
 anchor_right = 1.0
@@ -57,9 +68,17 @@ margin_bottom = 46.0
 texture = ExtResource( 5 )
 
 [node name="Arena" type="TextureButton" parent="MarginContainer/HBoxContainer/CanvasLayer/Menu Options"]
-margin_right = 189.0
+margin_right = 279.0
 margin_bottom = 77.0
 texture_normal = ExtResource( 6 )
+
+[node name="Customizer button" type="Button" parent="MarginContainer/HBoxContainer/CanvasLayer/Menu Options"]
+margin_top = 81.0
+margin_right = 279.0
+margin_bottom = 142.0
+theme = SubResource( 14 )
+text = "Customizer"
+flat = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="MarginContainer"]
 
@@ -86,3 +105,4 @@ margin_right = 1366.0
 margin_bottom = 768.0
 texture = ExtResource( 2 )
 [connection signal="pressed" from="MarginContainer/HBoxContainer/CanvasLayer/Menu Options/Arena" to="." method="_on_Arena_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CanvasLayer/Menu Options/Customizer button" to="." method="_on_Customizer_button_pressed"]
