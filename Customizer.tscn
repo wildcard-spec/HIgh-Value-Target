@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://player_model.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Customizer.gd" type="Script" id=2]
+[ext_resource path="res://Scooter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/buttonOkTheme.tres" type="Theme" id=6]
 [ext_resource path="res://fonts/new_dynamicfont.tres" type="DynamicFont" id=8]
 
@@ -108,11 +109,103 @@ Button/styles/hover = SubResource( 15 )
 Button/styles/normal = SubResource( 15 )
 Button/styles/pressed = null
 
+[sub_resource type="Animation" id=18]
+resource_name = "zoomIn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.19834, -5.23934 ), Vector3( 0, 1.19834, -3.23934 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "zoomOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.19834, -3.23934 ), Vector3( 0, 1.198, -5.239 ) ]
+}
+
 [node name="Customizer" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="player_model_root" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0059893, 0, 0.000235081 )
+
+[node name="Skeleton" parent="player_model_root/player_model/Armature" index="0"]
+bones/2/bound_children = [ NodePath("BoneAttachment 6"), NodePath("BoneAttachment 7"), NodePath("BoneAttachment 8"), NodePath("BoneAttachment 9"), NodePath("BoneAttachment 10") ]
+bones/4/bound_children = [ NodePath("BoneAttachment") ]
+bones/6/bound_children = [ NodePath("BoneAttachment 3") ]
+bones/7/bound_children = [ NodePath("BoneAttachment 2") ]
+bones/24/bound_children = [ NodePath("BoneAttachment 5") ]
+bones/25/bound_children = [ NodePath("BoneAttachment 4") ]
+bones/41/bound_children = [ NodePath("BoneAttachment 12"), NodePath("BoneAttachment 13") ]
+bones/42/bound_children = [ NodePath("BoneAttachment 11") ]
+bones/45/bound_children = [ NodePath("BoneAttachment 15"), NodePath("BoneAttachment 16") ]
+bones/46/bound_children = [ NodePath("BoneAttachment 14") ]
+
+[node name="BoneAttachment" parent="player_model_root/player_model/Armature/Skeleton" index="0"]
+transform = Transform( 0.999391, -0.0263754, 0.0228745, 0.0341536, 0.874484, -0.48385, -0.00724159, 0.484336, 0.874852, -0.0223007, 1.58639, 0.421821 )
+
+[node name="BoneAttachment 2" parent="player_model_root/player_model/Armature/Skeleton" index="1"]
+transform = Transform( 0.6941, -0.658901, 0.289957, 0.590124, 0.290116, -0.753381, 0.412283, 0.694033, 0.590204, 0.257103, 1.30815, 0.680229 )
+
+[node name="BoneAttachment 3" parent="player_model_root/player_model/Armature/Skeleton" index="2"]
+transform = Transform( -0.322684, 0.164643, -0.932077, -0.844318, -0.495144, 0.204839, -0.427787, 0.853068, 0.298786, 0.199971, 1.47997, 0.38421 )
+
+[node name="BoneAttachment 4" parent="player_model_root/player_model/Armature/Skeleton" index="3"]
+transform = Transform( 0.766118, -0.407074, -0.497347, -0.175615, -0.876982, 0.447282, -0.618241, -0.25533, -0.74336, -0.245398, 1.3758, 0.0154394 )
+
+[node name="BoneAttachment 5" parent="player_model_root/player_model/Armature/Skeleton" index="4"]
+transform = Transform( -0.99939, -0.0308051, 0.0164772, -0.00741766, -0.273788, -0.961761, 0.0341382, -0.961297, 0.273392, -0.234708, 1.47081, 0.349015 )
+
+[node name="BoneAttachment 6" parent="player_model_root/player_model/Armature/Skeleton" index="5"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="BoneAttachment 7" parent="player_model_root/player_model/Armature/Skeleton" index="6"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="BoneAttachment 8" parent="player_model_root/player_model/Armature/Skeleton" index="7"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="BoneAttachment 9" parent="player_model_root/player_model/Armature/Skeleton" index="8"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="BoneAttachment 10" parent="player_model_root/player_model/Armature/Skeleton" index="9"]
+transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+
+[node name="BoneAttachment 11" parent="player_model_root/player_model/Armature/Skeleton" index="10"]
+transform = Transform( -0.995085, 0.0474195, 0.0873563, -0.0866969, 0.0159632, -0.996118, -0.0486033, -0.998749, -0.0118164, 0.123359, 0.548926, 0.0850702 )
+
+[node name="BoneAttachment 12" parent="player_model_root/player_model/Armature/Skeleton" index="11"]
+transform = Transform( -0.99125, 0.117125, -0.0614871, -0.109273, -0.986902, -0.118707, -0.0745474, -0.110958, 0.991037, 0.0730207, 0.97308, 0.132758 )
+
+[node name="BoneAttachment 13" parent="player_model_root/player_model/Armature/Skeleton" index="12"]
+transform = Transform( -0.99125, 0.117125, -0.0614871, -0.109273, -0.986902, -0.118707, -0.0745474, -0.110958, 0.991037, 0.0730207, 0.97308, 0.132758 )
+
+[node name="BoneAttachment 14" parent="player_model_root/player_model/Armature/Skeleton" index="13"]
+transform = Transform( -0.996831, -0.0275628, -0.0750595, 0.0390927, -0.986917, -0.156485, -0.0697875, -0.158889, 0.984835, -0.133715, 0.620221, 0.379494 )
+
+[node name="BoneAttachment 15" parent="player_model_root/player_model/Armature/Skeleton" index="14"]
+transform = Transform( -0.991183, -0.132313, 0.0105989, 0.114175, -0.808895, 0.576776, -0.067776, 0.572861, 0.816859, -0.0768486, 0.967871, 0.133287 )
+
+[node name="BoneAttachment 16" parent="player_model_root/player_model/Armature/Skeleton" index="15"]
+transform = Transform( -0.991183, -0.132313, 0.0105989, 0.114175, -0.808895, 0.576776, -0.067776, 0.572861, 0.816859, -0.0768486, 0.967871, 0.133287 )
+
+[node name="Scooter" parent="player_model_root" instance=ExtResource( 3 )]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30326, 3 )
@@ -144,7 +237,7 @@ height = 0.395526
 sides = 16
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.19834, -3 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.19834, -5.23934 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -392,6 +485,11 @@ margin_right = 298.0
 margin_bottom = 49.0
 theme = SubResource( 16 )
 text = "Back"
+
+[node name="CameraPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 2
+anims/zoomIn = SubResource( 18 )
+anims/zoomOut = SubResource( 17 )
 [connection signal="popup_closed" from="MarginContainer/PanelContainer/VBoxContainer/Helmet&Vest/HVColorPickerButton" to="." method="_on_HVColorPickerButton_popup_closed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Helmet&Vest/HVColorPickerButton" to="." method="_on_HVColorPickerButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/H&VButtons/H&V Save" to="." method="_on_HV_Save_pressed"]
@@ -407,3 +505,7 @@ text = "Back"
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/ShirtButtons/Default" to="." method="_on_Shirt_Default_pressed"]
 [connection signal="pressed" from="MarginContainer2/CyclePosesButton" to="." method="_on_CyclePosesButton_pressed"]
 [connection signal="pressed" from="MarginContainer3/Back to menu button" to="." method="_on_Back_to_menu_button_pressed"]
+
+[editable path="player_model_root"]
+
+[editable path="player_model_root/player_model"]

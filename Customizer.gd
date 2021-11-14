@@ -5,7 +5,11 @@ onready var HelmetAndVest = get_node("MarginContainer/PanelContainer/VBoxContain
 onready var PlatingAndArmor = get_node("MarginContainer/PanelContainer/VBoxContainer/Plating and armor/PAColorPickerButton")
 onready var Shirt = get_node("MarginContainer/PanelContainer/VBoxContainer/Shirt/ShirtColorPickerButton")
 onready var animplayer = get_node("player_model_root/player_model/AnimationPlayer")
-onready var playerModel = get_node("player_model_root/player_model")
+onready var playerModel = get_node("player_model_root")
+onready var animations = animplayer.get_animation_list()
+onready var scooter = get_node("player_model_root/Scooter")
+onready var camera = get_node("Camera")
+onready var cameraAnim = get_node("CameraPlayer")
 
 onready var hvMaterial = preload("res://materials/Turquoise Material.material")
 onready var paMaterial = preload("res://materials/Plate Metal.material")
@@ -20,9 +24,11 @@ var mousePos2
 var isColorPickerOpen = false
 
 var first_call = true
+var isOnBike = true
+var animTime = 0
 
-var animations: Array = ["RestPose", "Aim_Pose", "Run-Aim", "Run_2nd_iteration"]
 var token:int = 0
+var current_animation
 
 func _input(event):
 #	print(event)
@@ -44,13 +50,27 @@ func _input(event):
 
 
 func _process(delta):
-#	print(isClicked)
 	if(first_call):
 		HelmetAndVest.color = hvMaterial.albedo_color
 		PlatingAndArmor.color = paMaterial.albedo_color
 		Shirt.color = shirtMaterial.albedo_color
-		animplayer.play("RestPose")
+		animplayer.play(animations[token])
 		first_call = false
+		current_animation = animations[token]
+	if current_animation == "Action" and isOnBike:
+		cameraAnim.play("zoomOut")
+		cameraAnim.advance(delta)
+		animTime += delta
+		if(animTime >= 0.7):
+			isOnBike = false
+			animTime = 0
+	elif current_animation!= "Action" and !isOnBike:
+		cameraAnim.play_backwards("zoomOut")
+		cameraAnim.advance(delta)
+		animTime += delta
+		if(animTime >= 0.7):
+			isOnBike = true
+			animTime = 0
 	hvMaterial.albedo_color = HelmetAndVest.color
 	paMaterial.albedo_color = PlatingAndArmor.color
 	shirtMaterial.albedo_color = Shirt.color
@@ -69,12 +89,18 @@ func _on_Shirt_Default_pressed():
 
 
 func _on_CyclePosesButton_pressed():
+	
 	token += 1
-	if token==4:
+	if token==animations.size():
 		token = 0
 	animplayer.play(animations[token])
-	
-	
+	current_animation = animations[token]
+	if(animations[token] == "Action"):
+		scooter.visible = true
+	else:
+		scooter.visible = false
+	animplayer.advance(0.1)
+	animplayer.stop(false)
 
 
 func _on_HV_Save_pressed():
@@ -127,3 +153,5 @@ func _on_ShirtColorPickerButton_pressed():
 
 func _on_ShirtColorPickerButton_popup_closed():
 	isColorPickerOpen = false
+
+

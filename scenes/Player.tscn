@@ -46,20 +46,6 @@ script = ExtResource( 4 )
 
 [node name="player_model_root" parent="." instance=ExtResource( 1 )]
 
-[node name="Skeleton" parent="player_model_root/player_model/Armature" index="0"]
-bones/2/bound_children = [ NodePath("BoneAttachment 6"), NodePath("BoneAttachment 7"), NodePath("BoneAttachment 8"), NodePath("BoneAttachment 9"), NodePath("BoneAttachment 10") ]
-bones/4/bound_children = [ NodePath("BoneAttachment") ]
-bones/6/bound_children = [ NodePath("BoneAttachment 3") ]
-bones/7/bound_children = [ NodePath("BoneAttachment 2") ]
-bones/11/bound_children = [ NodePath("hand_left") ]
-bones/24/bound_children = [ NodePath("BoneAttachment 5") ]
-bones/25/bound_children = [ NodePath("BoneAttachment 4") ]
-bones/29/bound_children = [ NodePath("hand_right") ]
-bones/41/bound_children = [ NodePath("BoneAttachment 12"), NodePath("BoneAttachment 13") ]
-bones/42/bound_children = [ NodePath("BoneAttachment 11") ]
-bones/45/bound_children = [ NodePath("BoneAttachment 15"), NodePath("BoneAttachment 16") ]
-bones/46/bound_children = [ NodePath("BoneAttachment 14") ]
-
 [node name="BoneAttachment" parent="player_model_root/player_model/Armature/Skeleton" index="0"]
 transform = Transform( 0.999825, -0.0171388, 0.00756878, 0.0187268, 0.901719, -0.431917, 0.000577629, 0.431982, 0.901882, -0.013317, 1.71759, 0.159799 )
 
