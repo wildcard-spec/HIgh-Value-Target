@@ -5,19 +5,22 @@ export var max_speed = 12
 export var dodge_speed = 55
 export var gravity = 70
 export var jump_impulse = 15
-export var surf_speed = 25
 
 
-onready var anim = get_node("player_model/AnimationPlayer")
+onready var anim = get_node("player_model_root/player_model/AnimationPlayer")
 onready var IK = get_node("IK_Control")
 onready var camera = get_node("Pivot/Camera")
-onready var model = get_node("player_model")
+onready var model = get_node("player_model_root")
 onready var laser = preload("res://resources/Laser_projectile.tscn")
-onready var muzzleRight = get_node("player_model/Armature/Skeleton/hand_right/gunRight/muzzleRight")
-onready var muzzleLeft = get_node("player_model/Armature/Skeleton/hand_left/gunLeft/muzzleLeft")
+onready var muzzleRight = get_node("player_model_root/player_model/Armature/Skeleton/hand_right/gunRight/muzzleRight")
+onready var muzzleLeft = get_node("player_model_root/player_model/Armature/Skeleton/hand_left/gunLeft/muzzleLeft")
 onready var pivotPoint = get_node("Pivot")
 onready var laserSound = get_node("laserSound")
-onready var tween = get_node("Tween")
+onready var tween = get_node("Jump")
+onready var smokeParticles = get_node("player_model_root/Smoke_Particles/Particles")
+onready var fireParticlesL = get_node("player_model_root/Particles/Particles")
+onready var fireParticlesR =  get_node("player_model_root/Particles2/Particles")
+
 
 var in_combat
 var targetLeft
@@ -28,7 +31,7 @@ var is_moving = false
 var velocity = Vector3.ZERO
 var direction = Vector3.ZERO
 var runAim = "Run-Aim"
-var run = "Run_2nd_iteration"
+var run = "Run"
 var defaultPose = "Aim_Pose"
 var rayOrigin
 var rayEnd
@@ -37,6 +40,10 @@ var health = 100
 var is_sliding = false
 var viewRotation
 
+func _ready():
+	smokeParticles.get_child(0).emitting = false
+	fireParticlesL.emitting = false
+	fireParticlesR.emitting = false
 
 func _physics_process(delta):
 	viewRotation = pivotPoint.rotation_degrees+camera.rotation_degrees
@@ -57,7 +64,12 @@ func _physics_process(delta):
 	if(Input.is_action_just_pressed("debug")):
 		print(in_combat)
 	
-	
+	if(!is_on_floor()):
+		fireParticlesL.emitting = true
+		fireParticlesR.emitting = true
+	else:
+		fireParticlesL.emitting = false
+		fireParticlesR.emitting = false
 	
 	#get direction
 	if(movementPressed()):
@@ -96,6 +108,7 @@ func _physics_process(delta):
 	if(is_on_floor() and Input.is_action_just_pressed("jump")):
 		tween.interpolate_property(self, "translation:y",self.translation[1],self.translation[1]+jump_impulse, 1, Tween.TRANS_QUART,Tween.EASE_OUT)
 		tween.start()
+		smokeParticles.get_child(0).emitting = true
 	velocity = move_and_slide(velocity,Vector3.UP)
 	if(!is_on_floor()):
 		play_anim("Aim_Pose")
@@ -162,3 +175,7 @@ func _on_proximityArea_body_entered(body):
 	
 	
 
+
+
+func _on_Jump_tween_completed(object, key):
+	smokeParticles.get_child(0).emitting = false

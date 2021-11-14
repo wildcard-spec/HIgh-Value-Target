@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://materials/grey_filler.tres" type="Material" id=2]
 [ext_resource path="res://vfx/environment_fun.tres" type="Environment" id=3]
 [ext_resource path="res://scenes/EnemyMelee.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/Floor.tscn" type="PackedScene" id=5]
@@ -11,95 +10,6 @@
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.78628, 17 )
-
-[node name="Skeleton" parent="Player/player_model/Armature" index="0"]
-bones/2/bound_children = [  ]
-bones/4/bound_children = [  ]
-bones/6/bound_children = [  ]
-bones/7/bound_children = [  ]
-bones/8/bound_children = [  ]
-bones/24/bound_children = [  ]
-bones/25/bound_children = [  ]
-bones/26/bound_children = [  ]
-bones/41/bound_children = [  ]
-bones/42/bound_children = [  ]
-bones/45/bound_children = [  ]
-bones/46/bound_children = [  ]
-
-[node name="BoneAttachment" parent="Player/player_model/Armature/Skeleton" index="0"]
-transform = Transform( 0.999391, -0.0263754, 0.0228745, 0.0341536, 0.874484, -0.48385, -0.0072416, 0.484336, 0.874852, -0.0223007, 1.58639, 0.421821 )
-
-[node name="BoneAttachment 2" parent="Player/player_model/Armature/Skeleton" index="1"]
-transform = Transform( 0.694099, -0.658901, 0.289956, 0.590125, 0.290116, -0.753381, 0.412282, 0.694033, 0.590204, 0.257103, 1.30815, 0.680229 )
-
-[node name="BoneAttachment 3" parent="Player/player_model/Armature/Skeleton" index="2"]
-transform = Transform( -0.322684, 0.164644, -0.932077, -0.844318, -0.495144, 0.204839, -0.427787, 0.853068, 0.298787, 0.199971, 1.47997, 0.38421 )
-
-[node name="BoneAttachment 4" parent="Player/player_model/Armature/Skeleton" index="3"]
-transform = Transform( 0.766118, -0.407074, -0.497347, -0.175615, -0.876982, 0.447282, -0.618241, -0.25533, -0.74336, -0.245398, 1.3758, 0.0154394 )
-
-[node name="BoneAttachment 5" parent="Player/player_model/Armature/Skeleton" index="4"]
-transform = Transform( -0.99939, -0.030805, 0.016477, -0.00741741, -0.273788, -0.961762, 0.0341382, -0.961297, 0.273392, -0.234708, 1.47081, 0.349015 )
-
-[node name="BoneAttachment 6" parent="Player/player_model/Armature/Skeleton" index="5"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
-
-[node name="BoneAttachment 7" parent="Player/player_model/Armature/Skeleton" index="6"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
-
-[node name="BoneAttachment 8" parent="Player/player_model/Armature/Skeleton" index="7"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
-
-[node name="BoneAttachment 9" parent="Player/player_model/Armature/Skeleton" index="8"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
-
-[node name="BoneAttachment 10" parent="Player/player_model/Armature/Skeleton" index="9"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
-
-[node name="BoneAttachment 11" parent="Player/player_model/Armature/Skeleton" index="10"]
-transform = Transform( -0.995084, 0.0473887, 0.0873606, -0.0866965, 0.0159731, -0.996119, -0.0486025, -0.998751, -0.0117837, 0.123364, 0.548926, 0.0850702 )
-
-[node name="BoneAttachment 12" parent="Player/player_model/Armature/Skeleton" index="11"]
-transform = Transform( -0.991249, 0.117137, -0.061444, -0.109272, -0.986901, -0.118716, -0.0745467, -0.110958, 0.99104, 0.0730207, 0.97308, 0.132758 )
-
-[node name="BoneAttachment 13" parent="Player/player_model/Armature/Skeleton" index="12"]
-transform = Transform( -0.991249, 0.117137, -0.061444, -0.109272, -0.986901, -0.118716, -0.0745467, -0.110958, 0.99104, 0.0730207, 0.97308, 0.132758 )
-
-[node name="BoneAttachment 14" parent="Player/player_model/Armature/Skeleton" index="13"]
-transform = Transform( -0.996834, -0.0275741, -0.0750811, 0.0390923, -0.986911, -0.156439, -0.0697878, -0.158891, 0.984844, -0.133729, 0.620222, 0.379493 )
-
-[node name="BoneAttachment 15" parent="Player/player_model/Armature/Skeleton" index="14"]
-transform = Transform( -0.991186, -0.132347, 0.010582, 0.114174, -0.808894, 0.576769, -0.0677759, 0.572859, 0.81686, -0.0768486, 0.967871, 0.133287 )
-
-[node name="BoneAttachment 16" parent="Player/player_model/Armature/Skeleton" index="15"]
-transform = Transform( -0.991186, -0.132347, 0.010582, 0.114174, -0.808894, 0.576769, -0.0677759, 0.572859, 0.81686, -0.0768486, 0.967871, 0.133287 )
-
-[node name="Belt" parent="Player/player_model/Armature/Skeleton" index="16"]
-material/0 = ExtResource( 2 )
-
-[node name="Pants" parent="Player/player_model/Armature/Skeleton" index="21"]
-material/0 = ExtResource( 2 )
-
-[node name="hand_right" parent="Player/player_model/Armature/Skeleton" index="23"]
-transform = Transform( 0.956715, -0.141016, -0.254579, -0.050912, -0.942373, 0.330667, -0.286538, -0.303393, -0.908763, -0.366958, 1.11392, -0.0608073 )
-
-[node name="gunRight" parent="Player/player_model/Armature/Skeleton/hand_right" index="0"]
-material/0 = ExtResource( 2 )
-
-[node name="hand_left" parent="Player/player_model/Armature/Skeleton" index="24"]
-transform = Transform( 0.64638, -0.741952, 0.178044, 0.563751, 0.307149, -0.766708, 0.514174, 0.595959, 0.616812, 0.0603425, 1.39479, 0.887481 )
-
-[node name="gunLeft" parent="Player/player_model/Armature/Skeleton/hand_left" index="0"]
-material/0 = ExtResource( 2 )
-
-[node name="CollisionShape" parent="Player/player_model/Akimbo_Area" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -18 )
-
-[node name="CollisionShape" parent="Player/player_model/Left_Hand_Area" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3091, -4, -23 )
-
-[node name="CollisionShape" parent="Player/player_model/Right_Hand_Area" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4237, -4, -23 )
 
 [node name="CollisionShape" parent="Player" index="1"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1, 0 )
@@ -151,7 +61,5 @@ transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, -15.517
 transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, -11.2318, 0, -12.7521 )
 
 [editable path="Player"]
-
-[editable path="Player/player_model"]
 
 [editable path="Floor"]

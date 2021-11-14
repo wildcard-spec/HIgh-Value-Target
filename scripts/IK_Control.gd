@@ -1,22 +1,23 @@
 tool
 extends Spatial
 export(NodePath) var skeleton_path setget _set_skeleton_path
-onready var skeleton_to_use: Skeleton = get_parent().get_node("player_model/Armature/Skeleton")
-onready var skeleton = get_parent().get_node("player_model/Armature/Skeleton")
+onready var skeleton_to_use: Skeleton = get_parent().get_node("player_model_root/player_model/Armature/Skeleton")
+onready var skeleton = get_parent().get_node("player_model_root/player_model/Armature/Skeleton")
 export(int, "_process", "_physics_process", "_notification", "none") var update_mode = 0 setget _set_update
 export(int, "X-up", "Y-up", "Z-up") var look_at_axis = 1
-export(float, 0.0, 1.0, 0.001) var interpolation = 1
+export(float,0.0 ,1.0,0.001) var interpolationSpeed = 0.1
 export(Vector3) var additional_rotation_left = Vector3()
 export(Vector3) var additional_rotation_right = Vector3()
 export(bool) var debug_messages = false
+
 var lefthand = "upper_arm_l"
 var righthand = "upper_arm_r"
 var leftHandArray = []
 var rightHandArray = []
 var akimboArray = []
 onready var Player = get_parent()
-onready var leftHandle = Player.get_node("player_model/leftHandle")
-onready var rightHandle = Player.get_node("player_model/rightHandle")
+onready var leftHandle = Player.get_node("player_model_root/leftHandle")
+onready var rightHandle = Player.get_node("player_model_root/rightHandle")
 onready var targetLeft = leftHandle
 onready var targetRight = rightHandle
 onready var targetLeftIK = leftHandle
@@ -63,6 +64,7 @@ func _process(_delta):
 		clearBonePose()
 	else:
 		change_aim()
+		clearBonePose()
 		update_skeleton()
 
 func _physics_process(_delta):
@@ -178,21 +180,23 @@ func change_aim() -> void:
 		targetRight = rightHandle
 		in_combat = false
 		return
-	if(!leftHandArray.empty()):
-		leftHandle.global_transform.origin = leftHandle.global_transform.origin.linear_interpolate(leftHandArray[0].global_transform.origin,0.1)
-		targetLeft = leftHandArray[0]
-	else:
-		targetLeft = leftHandle
-	if(!rightHandArray.empty()):
-		targetRight = rightHandArray[0]
-		rightHandle.global_transform.origin = rightHandle.global_transform.origin.linear_interpolate(rightHandArray[0].global_transform.origin,0.1)
-	else:
-		targetRight = rightHandle
 	if(!akimboArray.empty()):
-		leftHandle.global_transform.origin = leftHandle.global_transform.origin.linear_interpolate(akimboArray[0].global_transform.origin,0.1)
-		rightHandle.global_transform.origin = rightHandle.global_transform.origin.linear_interpolate(akimboArray[0].global_transform.origin,0.1)
+		leftHandle.global_transform.origin = leftHandle.global_transform.origin.linear_interpolate(akimboArray[0].global_transform.origin,interpolationSpeed)
+		rightHandle.global_transform.origin = rightHandle.global_transform.origin.linear_interpolate(akimboArray[0].global_transform.origin,interpolationSpeed)
 		targetLeft = akimboArray[0]
 		targetRight = akimboArray[0]
+	else:
+		if(!leftHandArray.empty()):
+			leftHandle.global_transform.origin = leftHandle.global_transform.origin.linear_interpolate(leftHandArray[0].global_transform.origin,interpolationSpeed)
+			targetLeft = leftHandArray[0]
+		else:
+			targetLeft = leftHandle
+		if(!rightHandArray.empty()):
+			targetRight = rightHandArray[0]
+			rightHandle.global_transform.origin = rightHandle.global_transform.origin.linear_interpolate(rightHandArray[0].global_transform.origin,interpolationSpeed)
+		else:
+			targetRight = rightHandle
+	
 
 func update_left() ->void:
 	if(skeleton_to_use!=null):
@@ -210,7 +214,7 @@ func update_left() ->void:
 			restLeft.basis = restLeft.basis.rotated(restLeft.basis.x, deg2rad(additional_rotation_left.x))
 			restLeft.basis = restLeft.basis.rotated(restLeft.basis.y, deg2rad(additional_rotation_left.y))
 			restLeft.basis = restLeft.basis.rotated(restLeft.basis.z, deg2rad(additional_rotation_left.z))
-		skeleton_to_use.set_bone_global_pose_override(boneLeft, restLeft, interpolation, true)
+		skeleton_to_use.set_bone_global_pose_override(boneLeft, restLeft, 1, true)
 			
 	if(Input.is_action_just_pressed("debug")):
 		print("lefthandArray = " + str(leftHandArray))
@@ -234,7 +238,7 @@ func update_right() ->void:
 			restRight.basis = restRight.basis.rotated(restRight.basis.x, deg2rad(additional_rotation_right.x))
 			restRight.basis = restRight.basis.rotated(restRight.basis.y, deg2rad(additional_rotation_right.y))
 			restRight.basis = restRight.basis.rotated(restRight.basis.z, deg2rad(additional_rotation_right.z))
-		skeleton_to_use.set_bone_global_pose_override(boneRight, restRight, interpolation, true)
+		skeleton_to_use.set_bone_global_pose_override(boneRight, restRight, 1, true)
 	
 	if(Input.is_action_just_pressed("debug")):
 			print(target_pos_right)

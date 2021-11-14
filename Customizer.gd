@@ -1,10 +1,11 @@
 extends Spatial
 class_name Customizer, "res://icons/customizer_icon.svg"
 
-onready var HelmetAndVest = get_node("MarginContainer/PanelContainer/VBoxContainer/Helmet&Vest/ColorPickerButton")
-onready var PlatingAndArmor = get_node("MarginContainer/PanelContainer/VBoxContainer/Plating and armor/ColorPickerButton")
-onready var Shirt = get_node("MarginContainer/PanelContainer/VBoxContainer/Shirt/ColorPickerButton")
-onready var animplayer = get_node("player_model/AnimationPlayer")
+onready var HelmetAndVest = get_node("MarginContainer/PanelContainer/VBoxContainer/Helmet&Vest/HVColorPickerButton")
+onready var PlatingAndArmor = get_node("MarginContainer/PanelContainer/VBoxContainer/Plating and armor/PAColorPickerButton")
+onready var Shirt = get_node("MarginContainer/PanelContainer/VBoxContainer/Shirt/ShirtColorPickerButton")
+onready var animplayer = get_node("player_model_root/player_model/AnimationPlayer")
+onready var playerModel = get_node("player_model_root/player_model")
 
 onready var hvMaterial = preload("res://materials/Turquoise Material.material")
 onready var paMaterial = preload("res://materials/Plate Metal.material")
@@ -13,13 +14,37 @@ onready var shirtDefaultMaterial = preload("res://materials/Default_shirt.materi
 onready var defaultHVMaterial = preload("res://materials/Default Helmet and Vest.material")
 onready var defaultPAMaterial = preload("res://materials/Default Plate Metal.material")
 
+var isClicked = false
+var mousePos1
+var mousePos2
+var isColorPickerOpen = false
 
 var first_call = true
 
 var animations: Array = ["RestPose", "Aim_Pose", "Run-Aim", "Run_2nd_iteration"]
 var token:int = 0
 
+func _input(event):
+#	print(event)
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.is_pressed():
+			isClicked = true
+			mousePos1 = get_viewport().get_mouse_position()
+			print("clicked")
+#			print(mousePos1)
+		elif event.button_index == 1 and not event.is_pressed():
+			isClicked = false
+			mousePos2 = get_viewport().get_mouse_position()
+			print("released")
+#			print(mousePos2)
+#			print(mousePos2-mousePos1)
+	if event is InputEventMouseMotion and isClicked and !isColorPickerOpen:
+		playerModel.rotate_y(event.relative.x/100)
+#		print(event.relative)
+
+
 func _process(delta):
+#	print(isClicked)
 	if(first_call):
 		HelmetAndVest.color = hvMaterial.albedo_color
 		PlatingAndArmor.color = paMaterial.albedo_color
@@ -78,3 +103,27 @@ func _on_PA_Cancel_pressed():
 
 func _on_Back_to_menu_button_pressed():
 	get_tree().change_scene("res://MainMenu.tscn")
+
+
+func _on_HVColorPickerButton_pressed():
+	isColorPickerOpen = true
+
+
+func _on_HVColorPickerButton_popup_closed():
+	isColorPickerOpen = false
+
+
+func _on_PAColorPickerButton_pressed():
+	isColorPickerOpen = true
+
+
+func _on_PAColorPickerButton_popup_closed():
+	isColorPickerOpen = false
+
+
+func _on_ShirtColorPickerButton_pressed():
+	isColorPickerOpen = true
+
+
+func _on_ShirtColorPickerButton_popup_closed():
+	isColorPickerOpen = false

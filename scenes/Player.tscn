@@ -1,13 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://materials/player_model.tscn" type="PackedScene" id=1]
-[ext_resource path="res://materials/Turquoise Material.material" type="Material" id=2]
+[ext_resource path="res://player_model.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/laser.wav" type="AudioStream" id=3]
 [ext_resource path="res://scripts/Player2.gd" type="Script" id=4]
 [ext_resource path="res://scripts/IK_Control.gd" type="Script" id=5]
+[ext_resource path="res://scenes/Smoke_particles.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Fire particles.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CubeMesh" id=1]
-size = Vector3( 0.08, 0.4, 0.07 )
+size = Vector3( 0.409, 0.075, 0.059 )
 
 [sub_resource type="CylinderMesh" id=2]
 top_radius = 0.089
@@ -43,123 +44,143 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource( 4 )
 
-[node name="player_model" parent="." instance=ExtResource( 1 )]
+[node name="player_model_root" parent="." instance=ExtResource( 1 )]
 
-[node name="BoneAttachment" parent="player_model/Armature/Skeleton" index="0"]
-transform = Transform( 0.999391, -0.0263754, 0.0228745, 0.0341536, 0.874484, -0.48385, -0.0072416, 0.484336, 0.874852, -0.0223007, 1.58639, 0.421821 )
+[node name="Skeleton" parent="player_model_root/player_model/Armature" index="0"]
+bones/2/bound_children = [ NodePath("BoneAttachment 6"), NodePath("BoneAttachment 7"), NodePath("BoneAttachment 8"), NodePath("BoneAttachment 9"), NodePath("BoneAttachment 10") ]
+bones/4/bound_children = [ NodePath("BoneAttachment") ]
+bones/6/bound_children = [ NodePath("BoneAttachment 3") ]
+bones/7/bound_children = [ NodePath("BoneAttachment 2") ]
+bones/11/bound_children = [ NodePath("hand_left") ]
+bones/24/bound_children = [ NodePath("BoneAttachment 5") ]
+bones/25/bound_children = [ NodePath("BoneAttachment 4") ]
+bones/29/bound_children = [ NodePath("hand_right") ]
+bones/41/bound_children = [ NodePath("BoneAttachment 12"), NodePath("BoneAttachment 13") ]
+bones/42/bound_children = [ NodePath("BoneAttachment 11") ]
+bones/45/bound_children = [ NodePath("BoneAttachment 15"), NodePath("BoneAttachment 16") ]
+bones/46/bound_children = [ NodePath("BoneAttachment 14") ]
 
-[node name="Cube002" parent="player_model/Armature/Skeleton/BoneAttachment" index="0"]
-material/0 = ExtResource( 2 )
+[node name="BoneAttachment" parent="player_model_root/player_model/Armature/Skeleton" index="0"]
+transform = Transform( 0.999825, -0.0171388, 0.00756878, 0.0187268, 0.901719, -0.431917, 0.000577629, 0.431982, 0.901882, -0.013317, 1.71759, 0.159799 )
 
-[node name="BoneAttachment 2" parent="player_model/Armature/Skeleton" index="1"]
-transform = Transform( 0.694099, -0.658901, 0.289956, 0.590125, 0.290116, -0.753381, 0.412282, 0.694033, 0.590204, 0.257103, 1.30815, 0.680229 )
+[node name="BoneAttachment 2" parent="player_model_root/player_model/Armature/Skeleton" index="1"]
+transform = Transform( -0.347477, -0.207652, 0.914407, 0.902533, 0.190452, 0.386215, -0.254349, 0.959483, 0.121235, 0.362377, 1.49463, 0.414386 )
 
-[node name="BoneAttachment 3" parent="player_model/Armature/Skeleton" index="2"]
-transform = Transform( -0.322684, 0.164644, -0.932077, -0.844318, -0.495144, 0.204839, -0.427787, 0.853068, 0.298787, 0.199971, 1.47997, 0.38421 )
+[node name="BoneAttachment 3" parent="player_model_root/player_model/Armature/Skeleton" index="2"]
+transform = Transform( -0.0710609, 0.444771, -0.892821, -0.943084, -0.321484, -0.0850903, -0.324874, 0.835959, 0.442301, 0.208039, 1.60619, 0.124304 )
 
-[node name="BoneAttachment 4" parent="player_model/Armature/Skeleton" index="3"]
-transform = Transform( 0.766118, -0.407074, -0.497347, -0.175615, -0.876982, 0.447282, -0.618241, -0.25533, -0.74336, -0.245398, 1.3758, 0.0154394 )
+[node name="BoneAttachment 4" parent="player_model_root/player_model/Armature/Skeleton" index="3"]
+transform = Transform( -0.395048, 0.159864, -0.904644, -0.889264, 0.18057, 0.420242, 0.230533, 0.970483, 0.0708275, -0.397453, 1.49758, 0.411096 )
 
-[node name="BoneAttachment 5" parent="player_model/Armature/Skeleton" index="4"]
-transform = Transform( -0.99939, -0.030805, 0.016477, -0.00741741, -0.273788, -0.961762, 0.0341382, -0.961297, 0.273392, -0.234708, 1.47081, 0.349015 )
+[node name="BoneAttachment 5" parent="player_model_root/player_model/Armature/Skeleton" index="4"]
+transform = Transform( -0.0435829, -0.481687, 0.875259, 0.950671, -0.289319, -0.111885, 0.307123, 0.827208, 0.470535, -0.230305, 1.59798, 0.124051 )
 
-[node name="BoneAttachment 6" parent="player_model/Armature/Skeleton" index="5"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+[node name="BoneAttachment 6" parent="player_model_root/player_model/Armature/Skeleton" index="5"]
+transform = Transform( 0.999825, -0.0185274, 0.00278626, 0.0187268, 0.983653, -0.179102, 0.000577568, 0.179122, 0.983827, -0.00707334, 1.38631, 0.0929617 )
 
-[node name="BoneAttachment 7" parent="player_model/Armature/Skeleton" index="6"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+[node name="BoneAttachment 7" parent="player_model_root/player_model/Armature/Skeleton" index="6"]
+transform = Transform( 0.999825, -0.0185274, 0.00278626, 0.0187268, 0.983653, -0.179102, 0.000577568, 0.179122, 0.983827, -0.00707334, 1.38631, 0.0929617 )
 
-[node name="BoneAttachment 8" parent="player_model/Armature/Skeleton" index="7"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+[node name="BoneAttachment 8" parent="player_model_root/player_model/Armature/Skeleton" index="7"]
+transform = Transform( 0.999825, -0.0185274, 0.00278626, 0.0187268, 0.983653, -0.179102, 0.000577568, 0.179122, 0.983827, -0.00707334, 1.38631, 0.0929617 )
 
-[node name="BoneAttachment 9" parent="player_model/Armature/Skeleton" index="8"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+[node name="BoneAttachment 9" parent="player_model_root/player_model/Armature/Skeleton" index="8"]
+transform = Transform( 0.999825, -0.0185274, 0.00278626, 0.0187268, 0.983653, -0.179102, 0.000577568, 0.179122, 0.983827, -0.00707334, 1.38631, 0.0929617 )
 
-[node name="BoneAttachment 10" parent="player_model/Armature/Skeleton" index="9"]
-transform = Transform( 0.99939, -0.0314699, 0.0151179, 0.0347342, 0.939981, -0.339455, -0.00352786, 0.339774, 0.940501, -0.011762, 1.27089, 0.300969 )
+[node name="BoneAttachment 10" parent="player_model_root/player_model/Armature/Skeleton" index="9"]
+transform = Transform( 0.999825, -0.0185274, 0.00278626, 0.0187268, 0.983653, -0.179102, 0.000577568, 0.179122, 0.983827, -0.00707334, 1.38631, 0.0929617 )
 
-[node name="BoneAttachment 11" parent="player_model/Armature/Skeleton" index="10"]
-transform = Transform( -0.995084, 0.0473887, 0.0873606, -0.0866965, 0.0159731, -0.996119, -0.0486025, -0.998751, -0.0117837, 0.123364, 0.548926, 0.0850702 )
+[node name="BoneAttachment 11" parent="player_model_root/player_model/Armature/Skeleton" index="10"]
+transform = Transform( -0.818491, -0.0444635, 0.572867, -0.350284, -0.751692, -0.558818, 0.455478, -0.657998, 0.599659, 0.282966, 0.887432, 0.308968 )
 
-[node name="BoneAttachment 12" parent="player_model/Armature/Skeleton" index="11"]
-transform = Transform( -0.991249, 0.117137, -0.061444, -0.109272, -0.986901, -0.118716, -0.0745467, -0.110958, 0.99104, 0.0730207, 0.97308, 0.132758 )
+[node name="BoneAttachment 12" parent="player_model_root/player_model/Armature/Skeleton" index="11"]
+transform = Transform( -0.868405, 0.486135, 0.0979645, -0.12746, -0.409686, 0.903294, 0.479271, 0.77189, 0.417732, 0.0740331, 1.06351, -0.0227775 )
 
-[node name="BoneAttachment 13" parent="player_model/Armature/Skeleton" index="12"]
-transform = Transform( -0.991249, 0.117137, -0.061444, -0.109272, -0.986901, -0.118716, -0.0745467, -0.110958, 0.99104, 0.0730207, 0.97308, 0.132758 )
+[node name="BoneAttachment 13" parent="player_model_root/player_model/Armature/Skeleton" index="12"]
+transform = Transform( -0.868405, 0.486135, 0.0979645, -0.12746, -0.409686, 0.903294, 0.479271, 0.77189, 0.417732, 0.0740331, 1.06351, -0.0227775 )
 
-[node name="BoneAttachment 14" parent="player_model/Armature/Skeleton" index="13"]
-transform = Transform( -0.996834, -0.0275741, -0.0750811, 0.0390923, -0.986911, -0.156439, -0.0697878, -0.158891, 0.984844, -0.133729, 0.620222, 0.379493 )
+[node name="BoneAttachment 14" parent="player_model_root/player_model/Armature/Skeleton" index="13"]
+transform = Transform( -0.817335, 0.0220519, -0.575805, 0.362464, -0.75713, -0.543498, -0.447958, -0.652873, 0.610819, -0.298479, 0.896851, 0.306261 )
 
-[node name="BoneAttachment 15" parent="player_model/Armature/Skeleton" index="14"]
-transform = Transform( -0.991186, -0.132347, 0.010582, 0.114174, -0.808894, 0.576769, -0.0677759, 0.572859, 0.81686, -0.0768486, 0.967871, 0.133287 )
+[node name="BoneAttachment 15" parent="player_model_root/player_model/Armature/Skeleton" index="14"]
+transform = Transform( -0.855362, -0.517883, -0.0142444, 0.215872, -0.381236, 0.898938, -0.470988, 0.765792, 0.437887, -0.0759013, 1.0607, -0.0228641 )
 
-[node name="BoneAttachment 16" parent="player_model/Armature/Skeleton" index="15"]
-transform = Transform( -0.991186, -0.132347, 0.010582, 0.114174, -0.808894, 0.576769, -0.0677759, 0.572859, 0.81686, -0.0768486, 0.967871, 0.133287 )
+[node name="BoneAttachment 16" parent="player_model_root/player_model/Armature/Skeleton" index="15"]
+transform = Transform( -0.855362, -0.517883, -0.0142444, 0.215872, -0.381236, 0.898938, -0.470988, 0.765792, 0.437887, -0.0759013, 1.0607, -0.0228641 )
 
-[node name="hand_right" type="BoneAttachment" parent="player_model/Armature/Skeleton" index="23"]
-transform = Transform( 0.956715, -0.141016, -0.254579, -0.050912, -0.942373, 0.330667, -0.286538, -0.303393, -0.908763, -0.366958, 1.11392, -0.0608073 )
-bone_name = "hand_r"
+[node name="hand_left" type="BoneAttachment" parent="player_model_root/player_model/Armature/Skeleton" index="23"]
+transform = Transform( -0.554677, -0.28068, 0.783296, 0.0686534, -0.953615, -0.293095, 0.829228, -0.108797, 0.548218, 0.237709, 1.55757, 0.784926 )
+bone_name = "finger_1_l"
 
-[node name="gunRight" type="MeshInstance" parent="player_model/Armature/Skeleton/hand_right"]
-transform = Transform( 0.929758, -0.0425305, 0.365706, 0.0395185, 0.999095, 0.0157219, -0.366045, -0.000165306, 0.930596, 0.0344707, 0.268745, -0.10926 )
+[node name="gunLeft" type="MeshInstance" parent="player_model_root/player_model/Armature/Skeleton/hand_left"]
+transform = Transform( 0.949522, 0.0464656, -0.310243, -0.0693805, 0.995584, -0.0632336, 0.305933, 0.0815667, 0.948551, 0.131133, 0.0353566, 0.0244781 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="muzzleRight" type="Spatial" parent="player_model/Armature/Skeleton/hand_right/gunRight"]
-transform = Transform( 1, 9.31323e-09, -2.11876e-08, 0, 1, 0, 4.65661e-10, 3.72529e-08, 1, -0.00898212, 0.362993, 0.0165361 )
+[node name="muzzleLeft" type="Spatial" parent="player_model_root/player_model/Armature/Skeleton/hand_left/gunLeft"]
+transform = Transform( 1, 6.98492e-10, 0, -2.32831e-10, 1, 8.29459e-10, 0, 4.51109e-10, 1, 0.415121, 0.000722587, 0.0331781 )
 
-[node name="hand_left" type="BoneAttachment" parent="player_model/Armature/Skeleton" index="24"]
-transform = Transform( 0.64638, -0.741952, 0.178044, 0.563751, 0.307149, -0.766708, 0.514174, 0.595959, 0.616812, 0.0603425, 1.39479, 0.887481 )
-bone_name = "hand_l"
+[node name="hand_right" type="BoneAttachment" parent="player_model_root/player_model/Armature/Skeleton" index="24"]
+transform = Transform( -0.508898, 0.250346, -0.82362, -0.0460076, -0.96332, -0.264381, -0.859596, -0.0966503, 0.501749, -0.291742, 1.55503, 0.78836 )
+bone_name = "finger_1_r"
 
-[node name="gunLeft" type="MeshInstance" parent="player_model/Armature/Skeleton/hand_left"]
-transform = Transform( 0.888494, 0.103364, -0.447098, -0.103754, 0.994321, 0.0236918, 0.447009, 0.0253382, 0.894171, 0.00420213, 0.237485, -0.0786008 )
+[node name="gunRight" type="MeshInstance" parent="player_model_root/player_model/Armature/Skeleton/hand_right"]
+transform = Transform( 0.888981, -0.0320989, 0.456815, 0.111667, 0.982623, -0.148261, -0.444121, 0.182814, 0.877117, -0.126038, -0.0225447, 0.019464 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="muzzleLeft" type="Spatial" parent="player_model/Armature/Skeleton/hand_left/gunLeft"]
-transform = Transform( 0.999999, 4.89876e-07, 4.98723e-07, -1.28523e-07, 0.999999, 9.68575e-08, -1.83703e-07, -1.63913e-07, 0.999999, 0.0167189, 0.363681, 0.0153646 )
+[node name="muzzleRight" type="Spatial" parent="player_model_root/player_model/Armature/Skeleton/hand_right/gunRight"]
+transform = Transform( -0.999992, 0.00277024, 0.0026054, -0.0030329, -0.994221, -0.107307, 0.00228918, -0.107314, 0.994223, -0.408464, 0.0155989, -0.00376713 )
 
-[node name="leftHandle" type="Spatial" parent="player_model"]
+[node name="leftHandle" type="Spatial" parent="player_model_root"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.364243, 1.54943, -1.29951 )
 
-[node name="Debug" type="MeshInstance" parent="player_model/leftHandle"]
+[node name="Debug" type="MeshInstance" parent="player_model_root/leftHandle"]
 visible = false
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
-[node name="rightHandle" type="Spatial" parent="player_model"]
+[node name="rightHandle" type="Spatial" parent="player_model_root"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.303532, 1.54943, -1.34095 )
 
-[node name="Debug2" type="MeshInstance" parent="player_model/rightHandle"]
+[node name="Debug2" type="MeshInstance" parent="player_model_root/rightHandle"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.667775, 0, 0.04144 )
 visible = false
 mesh = SubResource( 2 )
 material/0 = SubResource( 4 )
 
-[node name="restLeft" type="Spatial" parent="player_model"]
+[node name="restLeft" type="Spatial" parent="player_model_root"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.364243, 1.54943, -1.29951 )
 
-[node name="restRight" type="Spatial" parent="player_model"]
+[node name="restRight" type="Spatial" parent="player_model_root"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.303532, 1.54943, -1.34095 )
 
-[node name="Akimbo_Area" type="Area" parent="player_model"]
+[node name="Akimbo_Area" type="Area" parent="player_model_root"]
 
-[node name="CollisionShape" type="CollisionShape" parent="player_model/Akimbo_Area"]
+[node name="CollisionShape" type="CollisionShape" parent="player_model_root/Akimbo_Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15 )
 shape = SubResource( 5 )
 
-[node name="Left_Hand_Area" type="Area" parent="player_model"]
+[node name="Left_Hand_Area" type="Area" parent="player_model_root"]
 
-[node name="CollisionShape" type="CollisionShape" parent="player_model/Left_Hand_Area"]
+[node name="CollisionShape" type="CollisionShape" parent="player_model_root/Left_Hand_Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -15 )
 shape = SubResource( 6 )
 
-[node name="Right_Hand_Area" type="Area" parent="player_model"]
+[node name="Right_Hand_Area" type="Area" parent="player_model_root"]
 
-[node name="CollisionShape" type="CollisionShape" parent="player_model/Right_Hand_Area"]
+[node name="CollisionShape" type="CollisionShape" parent="player_model_root/Right_Hand_Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -15 )
 shape = SubResource( 7 )
+
+[node name="Smoke_Particles" parent="player_model_root" instance=ExtResource( 6 )]
+transform = Transform( 0.00107857, 0, 0, 0, 0.00107857, 0, 0, 0, 0.00107857, 0, 0.871484, 0 )
+
+[node name="Particles" parent="player_model_root" instance=ExtResource( 7 )]
+transform = Transform( 0.235904, 0, 0, 0, 0.0560598, 0, 0, 0, 0.235904, -0.152415, 0.997835, 0.225538 )
+
+[node name="Particles2" parent="player_model_root" instance=ExtResource( 7 )]
+transform = Transform( 0.235904, 0, 0, 0, 0.0560598, 0, 0, 0, 0.235904, 0.156642, 0.997835, 0.225538 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.00528, 0.104091 )
@@ -170,7 +191,7 @@ script = ExtResource( 5 )
 skeleton_path = NodePath("../player_model/Armature/Skeleton")
 update_mode = 1
 additional_rotation_left = Vector3( -90, 90, 0 )
-additional_rotation_right = Vector3( -90, -90, 0 )
+additional_rotation_right = Vector3( -90, 270, 0 )
 
 [node name="proximityArea" type="Area" parent="."]
 
@@ -186,13 +207,16 @@ transform = Transform( 0.5, -0.55667, 0.663414, 0, 0.766044, 0.642788, -0.866025
 [node name="laserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
-[node name="Tween" type="Tween" parent="."]
-[connection signal="body_entered" from="player_model/Akimbo_Area" to="IK_Control" method="_on_Akimbo_Area_body_entered"]
-[connection signal="body_exited" from="player_model/Akimbo_Area" to="IK_Control" method="_on_Akimbo_Area_body_exited"]
-[connection signal="body_entered" from="player_model/Left_Hand_Area" to="IK_Control" method="_on_Left_Hand_Area_body_entered"]
-[connection signal="body_exited" from="player_model/Left_Hand_Area" to="IK_Control" method="_on_Left_Hand_Area_body_exited"]
-[connection signal="body_entered" from="player_model/Right_Hand_Area" to="IK_Control" method="_on_Right_Hand_Area_body_entered"]
-[connection signal="body_exited" from="player_model/Right_Hand_Area" to="IK_Control" method="_on_Right_Hand_Area_body_exited"]
+[node name="Jump" type="Tween" parent="."]
+[connection signal="body_entered" from="player_model_root/Akimbo_Area" to="IK_Control" method="_on_Akimbo_Area_body_entered"]
+[connection signal="body_exited" from="player_model_root/Akimbo_Area" to="IK_Control" method="_on_Akimbo_Area_body_exited"]
+[connection signal="body_entered" from="player_model_root/Left_Hand_Area" to="IK_Control" method="_on_Left_Hand_Area_body_entered"]
+[connection signal="body_exited" from="player_model_root/Left_Hand_Area" to="IK_Control" method="_on_Left_Hand_Area_body_exited"]
+[connection signal="body_entered" from="player_model_root/Right_Hand_Area" to="IK_Control" method="_on_Right_Hand_Area_body_entered"]
+[connection signal="body_exited" from="player_model_root/Right_Hand_Area" to="IK_Control" method="_on_Right_Hand_Area_body_exited"]
 [connection signal="body_entered" from="proximityArea" to="." method="_on_proximityArea_body_entered"]
+[connection signal="tween_completed" from="Jump" to="." method="_on_Jump_tween_completed"]
 
-[editable path="player_model"]
+[editable path="player_model_root"]
+
+[editable path="player_model_root/player_model"]

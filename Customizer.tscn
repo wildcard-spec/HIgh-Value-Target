@@ -1,12 +1,8 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://materials/player_model.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player_model.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Customizer.gd" type="Script" id=2]
-[ext_resource path="res://materials/Turquoise Material.material" type="Material" id=3]
-[ext_resource path="res://scenes/Pants material.material" type="Material" id=4]
-[ext_resource path="res://materials/Shirt_material.material" type="Material" id=5]
 [ext_resource path="res://UI/buttonOkTheme.tres" type="Theme" id=6]
-[ext_resource path="res://materials/Coat material.material" type="Material" id=7]
 [ext_resource path="res://fonts/new_dynamicfont.tres" type="DynamicFont" id=8]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -115,103 +111,8 @@ Button/styles/pressed = null
 [node name="Customizer" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="player_model" parent="." instance=ExtResource( 1 )]
-
-[node name="Skeleton" parent="player_model/Armature" index="0"]
-bones/2/bound_children = [ NodePath("BoneAttachment 6"), NodePath("BoneAttachment 7"), NodePath("BoneAttachment 8"), NodePath("BoneAttachment 9"), NodePath("BoneAttachment 10") ]
-bones/4/bound_children = [ NodePath("BoneAttachment") ]
-bones/6/bound_children = [ NodePath("BoneAttachment 3") ]
-bones/7/bound_children = [ NodePath("BoneAttachment 2") ]
-bones/24/bound_children = [ NodePath("BoneAttachment 5") ]
-bones/25/bound_children = [ NodePath("BoneAttachment 4") ]
-bones/41/bound_children = [ NodePath("BoneAttachment 12"), NodePath("BoneAttachment 13") ]
-bones/42/bound_children = [ NodePath("BoneAttachment 11") ]
-bones/45/bound_children = [ NodePath("BoneAttachment 15"), NodePath("BoneAttachment 16") ]
-bones/46/bound_children = [ NodePath("BoneAttachment 14") ]
-
-[node name="BoneAttachment" parent="player_model/Armature/Skeleton" index="0"]
-transform = Transform( 1, 2.54792e-09, -5.08776e-09, -4.24775e-09, 0.979346, -0.202191, 2.35007e-09, 0.202191, 0.979346, 1.59053e-09, 1.73542, -0.0148857 )
-
-[node name="Cube002" parent="player_model/Armature/Skeleton/BoneAttachment" index="0"]
-transform = Transform( -1, 7.97518e-13, 8.74266e-08, -1.76761e-08, 0.979346, -0.202191, -8.56211e-08, -0.202191, -0.979346, -3.72528e-09, -1.69657, 0.365464 )
-material/0 = ExtResource( 3 )
-
-[node name="BoneAttachment 2" parent="player_model/Armature/Skeleton" index="1"]
-transform = Transform( -0.0923854, 0.995718, 0.00326375, 0.909587, 0.0830594, 0.407126, 0.405112, 0.040582, -0.913366, 0.565689, 1.62022, -0.0399562 )
-
-[node name="Coat002" parent="player_model/Armature/Skeleton/BoneAttachment 2" index="0"]
-transform = Transform( -0.10774, 0.909587, 0.405113, 1.16121, 0.0830595, 0.0405812, 0.00380617, 0.407127, -0.913366, 0.0312867, 0.170558, 0.011703 )
-
-[node name="BoneAttachment 3" parent="player_model/Armature/Skeleton" index="2"]
-transform = Transform( 0.0131844, 0.998481, 0.053495, -0.998599, 0.0158897, -0.0504714, -0.0512447, -0.0527546, 0.997292, 0.21921, 1.61471, -0.0216501 )
-
-[node name="Coat001" parent="player_model/Armature/Skeleton/BoneAttachment 3" index="0"]
-transform = Transform( 0.0195272, -0.998599, -0.0657582, 1.47885, 0.0158899, -0.0676965, 0.0792323, -0.0504714, 1.27974, -0.0636369, 0.0529841, -0.0176299 )
-
-[node name="BoneAttachment 4" parent="player_model/Armature/Skeleton" index="3"]
-transform = Transform( -0.0923843, -0.995718, -0.0032637, -0.909587, 0.0830586, 0.407127, -0.405113, 0.0405808, -0.913366, -0.565689, 1.62022, -0.0399559 )
-
-[node name="BoneAttachment 5" parent="player_model/Armature/Skeleton" index="4"]
-transform = Transform( 0.013185, -0.998481, -0.0534941, 0.9986, 0.0158906, -0.0504715, 0.0512451, -0.0527539, 0.997292, -0.21921, 1.61471, -0.02165 )
-
-[node name="BoneAttachment 6" parent="player_model/Armature/Skeleton" index="5"]
-transform = Transform( 1, 3.95244e-09, 5.79565e-08, -8.05917e-09, 0.998016, 0.0629594, -5.94553e-08, -0.0629594, 0.998016, 2.74556e-10, 1.39773, -3.4529e-08 )
-
-[node name="BoneAttachment 7" parent="player_model/Armature/Skeleton" index="6"]
-transform = Transform( 1, 3.95244e-09, 5.79565e-08, -8.05917e-09, 0.998016, 0.0629594, -5.94553e-08, -0.0629594, 0.998016, 2.74556e-10, 1.39773, -3.4529e-08 )
-
-[node name="Plane012" parent="player_model/Armature/Skeleton/BoneAttachment 7" index="0"]
-transform = Transform( -1, -3.86821e-09, 1.48741e-07, 5.50408e-09, 0.998016, 0.0629593, -1.48689e-07, 0.0629593, -0.998016, -2.66454e-15, -1.39495, -0.088 )
-material/0 = ExtResource( 3 )
-
-[node name="BoneAttachment 8" parent="player_model/Armature/Skeleton" index="7"]
-transform = Transform( 1, 3.95244e-09, 5.79565e-08, -8.05917e-09, 0.998016, 0.0629594, -5.94553e-08, -0.0629594, 0.998016, 2.74556e-10, 1.39773, -3.4529e-08 )
-
-[node name="Plane017" parent="player_model/Armature/Skeleton/BoneAttachment 8" index="0"]
-material/0 = ExtResource( 3 )
-
-[node name="BoneAttachment 9" parent="player_model/Armature/Skeleton" index="8"]
-transform = Transform( 1, 3.95244e-09, 5.79565e-08, -8.05917e-09, 0.998016, 0.0629594, -5.94553e-08, -0.0629594, 0.998016, 2.74556e-10, 1.39773, -3.4529e-08 )
-
-[node name="Plane018" parent="player_model/Armature/Skeleton/BoneAttachment 9" index="0"]
-transform = Transform( -1.01234, -4.42378e-09, 1.49943e-07, 7.68341e-09, 1.01033, 0.0637362, -1.51107e-07, 0.0637361, -1.01033, -9.43616e-05, 0.108376, 0.0270635 )
-material/0 = ExtResource( 3 )
-
-[node name="BoneAttachment 10" parent="player_model/Armature/Skeleton" index="9"]
-transform = Transform( 1, 3.95244e-09, 5.79565e-08, -8.05917e-09, 0.998016, 0.0629594, -5.94553e-08, -0.0629594, 0.998016, 2.74556e-10, 1.39773, -3.4529e-08 )
-
-[node name="Plane019" parent="player_model/Armature/Skeleton/BoneAttachment 10" index="0"]
-material/0 = ExtResource( 3 )
-
-[node name="BoneAttachment 11" parent="player_model/Armature/Skeleton" index="10"]
-transform = Transform( -0.996779, 0.0806555, -0.00050372, -0.0805638, -0.995824, -0.042971, -0.00396848, -0.0427902, 0.999093, 0.105931, 0.626974, -0.0134293 )
-
-[node name="BoneAttachment 12" parent="player_model/Armature/Skeleton" index="11"]
-transform = Transform( -0.997413, 0.0720154, -0.00747608, -0.0722974, -0.996218, 0.0482142, -0.00397729, 0.0486219, 0.998826, 0.0749803, 1.05513, -0.0343262 )
-
-[node name="BoneAttachment 13" parent="player_model/Armature/Skeleton" index="12"]
-transform = Transform( -0.997413, 0.0720154, -0.00747608, -0.0722974, -0.996218, 0.0482142, -0.00397729, 0.0486219, 0.998826, 0.0749803, 1.05513, -0.0343262 )
-
-[node name="BoneAttachment 14" parent="player_model/Armature/Skeleton" index="13"]
-transform = Transform( -0.996779, -0.0806543, 0.000515684, 0.0805638, -0.995825, -0.0429633, 0.00396791, -0.0427901, 0.999092, -0.10593, 0.626974, -0.0134294 )
-
-[node name="BoneAttachment 15" parent="player_model/Armature/Skeleton" index="14"]
-transform = Transform( -0.997413, -0.072012, 0.00748808, 0.0722974, -0.996218, 0.048227, 0.00397671, 0.0486219, 0.998825, -0.0749803, 1.05513, -0.0343262 )
-
-[node name="BoneAttachment 16" parent="player_model/Armature/Skeleton" index="15"]
-transform = Transform( -0.997413, -0.072012, 0.00748808, 0.0722974, -0.996218, 0.048227, 0.00397671, 0.0486219, 0.998825, -0.0749803, 1.05513, -0.0343262 )
-
-[node name="Coat" parent="player_model/Armature/Skeleton" index="19"]
-material/0 = ExtResource( 7 )
-
-[node name="Coat005" parent="player_model/Armature/Skeleton" index="20"]
-material/0 = ExtResource( 5 )
-
-[node name="Pants" parent="player_model/Armature/Skeleton" index="21"]
-material/0 = ExtResource( 4 )
-
-[node name="AnimationPlayer" parent="player_model" index="1"]
-playback_speed = 0.0
+[node name="player_model_root" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0059893, 0, 0.000235081 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30326, 3 )
@@ -274,34 +175,36 @@ __meta__ = {
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
 margin_right = 308.0
-margin_bottom = 436.0
+margin_bottom = 424.0
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer2"]
 margin_right = 308.0
-margin_bottom = 436.0
+margin_bottom = 424.0
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 440.0
+margin_top = 428.0
 margin_right = 308.0
-margin_bottom = 444.0
+margin_bottom = 432.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 
 [node name="Helmet&Vest" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 448.0
+margin_top = 436.0
 margin_right = 308.0
-margin_bottom = 509.0
+margin_bottom = 520.0
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.14
+size_flags_stretch_ratio = 0.3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/PanelContainer/VBoxContainer/Helmet&Vest"]
+[node name="HVColorPickerButton" type="ColorPickerButton" parent="MarginContainer/PanelContainer/VBoxContainer/Helmet&Vest"]
 margin_right = 308.0
-margin_bottom = 61.0
+margin_bottom = 84.0
 mouse_default_cursor_shape = 2
 edit_alpha = false
 __meta__ = {
@@ -309,15 +212,15 @@ __meta__ = {
 }
 
 [node name="H&VButtons" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 513.0
+margin_top = 524.0
 margin_right = 308.0
-margin_bottom = 556.0
+margin_bottom = 608.0
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
+size_flags_stretch_ratio = 0.3
 
 [node name="H&V Save" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/H&VButtons"]
 margin_right = 152.0
-margin_bottom = 43.0
+margin_bottom = 84.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
@@ -326,7 +229,7 @@ text = "Save"
 [node name="H&V Default" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/H&VButtons"]
 margin_left = 156.0
 margin_right = 308.0
-margin_bottom = 43.0
+margin_bottom = 84.0
 size_flags_horizontal = 3
 theme = SubResource( 8 )
 text = "Default"
@@ -341,18 +244,18 @@ theme = SubResource( 10 )
 text = "Cancel"
 
 [node name="Plating and armor" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 560.0
+margin_top = 612.0
 margin_right = 308.0
-margin_bottom = 621.0
+margin_bottom = 696.0
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.14
+size_flags_stretch_ratio = 0.3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/PanelContainer/VBoxContainer/Plating and armor"]
+[node name="PAColorPickerButton" type="ColorPickerButton" parent="MarginContainer/PanelContainer/VBoxContainer/Plating and armor"]
 margin_right = 308.0
-margin_bottom = 61.0
+margin_bottom = 84.0
 mouse_default_cursor_shape = 2
 color = Color( 1, 1, 1, 1 )
 edit_alpha = false
@@ -361,15 +264,15 @@ __meta__ = {
 }
 
 [node name="PaButtons" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 625.0
+margin_top = 700.0
 margin_right = 308.0
-margin_bottom = 665.0
+margin_bottom = 784.0
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.05
+size_flags_stretch_ratio = 0.3
 
 [node name="PA Save" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/PaButtons"]
 margin_right = 152.0
-margin_bottom = 40.0
+margin_bottom = 84.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
@@ -378,7 +281,7 @@ text = "Save"
 [node name="PA Default" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/PaButtons"]
 margin_left = 156.0
 margin_right = 308.0
-margin_bottom = 40.0
+margin_bottom = 84.0
 size_flags_horizontal = 3
 theme = SubResource( 8 )
 text = "Default"
@@ -393,18 +296,18 @@ theme = SubResource( 10 )
 text = "Cancel"
 
 [node name="Shirt" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 669.0
+margin_top = 788.0
 margin_right = 308.0
-margin_bottom = 734.0
+margin_bottom = 872.0
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
+size_flags_stretch_ratio = 0.3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/PanelContainer/VBoxContainer/Shirt"]
+[node name="ShirtColorPickerButton" type="ColorPickerButton" parent="MarginContainer/PanelContainer/VBoxContainer/Shirt"]
 margin_right = 308.0
-margin_bottom = 65.0
+margin_bottom = 84.0
 mouse_default_cursor_shape = 2
 size_flags_vertical = 3
 color = Color( 1, 1, 1, 1 )
@@ -414,15 +317,15 @@ __meta__ = {
 }
 
 [node name="ShirtButtons" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 738.0
+margin_top = 876.0
 margin_right = 308.0
-margin_bottom = 778.0
+margin_bottom = 960.0
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.05
+size_flags_stretch_ratio = 0.3
 
 [node name="Save" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/ShirtButtons"]
 margin_right = 152.0
-margin_bottom = 40.0
+margin_bottom = 84.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
@@ -431,7 +334,7 @@ text = "Save"
 [node name="Default" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/ShirtButtons"]
 margin_left = 156.0
 margin_right = 308.0
-margin_bottom = 40.0
+margin_bottom = 84.0
 size_flags_horizontal = 3
 theme = SubResource( 8 )
 text = "Default"
@@ -446,7 +349,7 @@ theme = SubResource( 10 )
 text = "Cancel"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 782.0
+margin_top = 964.0
 margin_right = 308.0
 margin_bottom = 1309.0
 size_flags_vertical = 3
@@ -458,9 +361,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -323.725
-margin_top = 55.8963
+margin_top = 140.749
 margin_right = -25.7246
-margin_bottom = 105.896
+margin_bottom = 190.749
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -486,17 +389,21 @@ __meta__ = {
 
 [node name="Back to menu button" type="Button" parent="MarginContainer3"]
 margin_right = 298.0
-margin_bottom = 50.0
+margin_bottom = 49.0
 theme = SubResource( 16 )
 text = "Back"
+[connection signal="popup_closed" from="MarginContainer/PanelContainer/VBoxContainer/Helmet&Vest/HVColorPickerButton" to="." method="_on_HVColorPickerButton_popup_closed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Helmet&Vest/HVColorPickerButton" to="." method="_on_HVColorPickerButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/H&VButtons/H&V Save" to="." method="_on_HV_Save_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/H&VButtons/H&V Default" to="." method="_on_HV_Default_pressed"]
+[connection signal="popup_closed" from="MarginContainer/PanelContainer/VBoxContainer/Plating and armor/PAColorPickerButton" to="." method="_on_PAColorPickerButton_popup_closed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Plating and armor/PAColorPickerButton" to="." method="_on_PAColorPickerButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/PaButtons/PA Save" to="." method="_on_PA_Save_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/PaButtons/PA Default" to="." method="_on_PA_Default_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/PaButtons/PA Cancel" to="." method="_on_PA_Cancel_pressed"]
+[connection signal="popup_closed" from="MarginContainer/PanelContainer/VBoxContainer/Shirt/ShirtColorPickerButton" to="." method="_on_ShirtColorPickerButton_popup_closed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Shirt/ShirtColorPickerButton" to="." method="_on_ShirtColorPickerButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/ShirtButtons/Save" to="." method="_on_Shirt_Save_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/ShirtButtons/Default" to="." method="_on_Shirt_Default_pressed"]
 [connection signal="pressed" from="MarginContainer2/CyclePosesButton" to="." method="_on_CyclePosesButton_pressed"]
 [connection signal="pressed" from="MarginContainer3/Back to menu button" to="." method="_on_Back_to_menu_button_pressed"]
-
-[editable path="player_model"]
