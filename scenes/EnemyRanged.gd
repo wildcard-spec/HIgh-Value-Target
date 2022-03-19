@@ -6,7 +6,7 @@ onready var laser = preload("res://scenes/Laser_projectile_enemy.tscn")
 onready var beamSpawn = get_node("EnemyModel/BeamStartPoint")
 onready var shootTimer = get_node("ShootTimer")
 
-var health = 2 setget setHealth, getHealth
+var health = 2 setget takeDamage, getHealth
 var direction
 var state = IDLE
 var velocity = Vector3.ZERO
@@ -33,13 +33,13 @@ func _process(delta):
 				l.shoot = true
 				timerTimeout = false
 	
-	if(health<0):
+	if(health<=0):
 		queue_free()
 
 
 
-func setHealth(new_value):
-	health = new_value
+func takeDamage(value):
+	health -= value
 	
 
 func getHealth():

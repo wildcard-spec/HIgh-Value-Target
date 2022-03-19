@@ -24,7 +24,7 @@ var mousePos2
 var isColorPickerOpen = false
 
 var first_call = true
-var isOnBike = true
+var aboutToMount = false
 var animTime = 0
 
 var token:int = 0
@@ -57,20 +57,6 @@ func _process(delta):
 		animplayer.play(animations[token])
 		first_call = false
 		current_animation = animations[token]
-	if current_animation == "Action" and isOnBike:
-		cameraAnim.play("zoomOut")
-		cameraAnim.advance(delta)
-		animTime += delta
-		if(animTime >= 0.7):
-			isOnBike = false
-			animTime = 0
-	elif current_animation!= "Action" and !isOnBike:
-		cameraAnim.play_backwards("zoomOut")
-		cameraAnim.advance(delta)
-		animTime += delta
-		if(animTime >= 0.7):
-			isOnBike = true
-			animTime = 0
 	hvMaterial.albedo_color = HelmetAndVest.color
 	paMaterial.albedo_color = PlatingAndArmor.color
 	shirtMaterial.albedo_color = Shirt.color
@@ -95,13 +81,18 @@ func _on_CyclePosesButton_pressed():
 		token = 0
 	animplayer.play(animations[token])
 	current_animation = animations[token]
-	if(animations[token] == "Action"):
+	if(current_animation == "Action"):
 		scooter.visible = true
 	else:
 		scooter.visible = false
 	animplayer.advance(0.1)
 	animplayer.stop(false)
-
+	if current_animation == "Action" and aboutToMount:
+		cameraAnim.play("zoomOut")
+		aboutToMount = false
+	elif current_animation!= "Action" and !aboutToMount:
+		cameraAnim.play_backwards("zoomOut")
+		aboutToMount = true
 
 func _on_HV_Save_pressed():
 	

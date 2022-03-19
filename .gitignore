@@ -3,6 +3,14 @@
 .import/
 export.cfg
 export_presets.cfg
+*.tscn
+*.ttf
+*.tres
+*.svg
+*.material
+*.gltf
+*.png
+*.obj
 
 # Mono-specific ignores
 .mono/

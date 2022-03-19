@@ -7,6 +7,8 @@ export var gravity = 70
 export var jump_impulse = 15
 
 
+
+onready var playerVars = get_node("/root/PlayerVariables")
 onready var anim = get_node("player_model_root/player_model/AnimationPlayer")
 onready var IK = get_node("IK_Control")
 onready var camera = get_node("Pivot/Camera")
@@ -16,11 +18,8 @@ onready var muzzleRight = get_node("player_model_root/player_model/Armature/Skel
 onready var muzzleLeft = get_node("player_model_root/player_model/Armature/Skeleton/hand_left/gunLeft/muzzleLeft")
 onready var pivotPoint = get_node("Pivot")
 onready var laserSound = get_node("laserSound")
-onready var tween = get_node("Jump")
-onready var smokeParticles = get_node("player_model_root/Smoke_Particles/Particles")
-onready var fireParticlesL = get_node("player_model_root/Particles/Particles")
-onready var fireParticlesR =  get_node("player_model_root/Particles2/Particles")
-
+onready var jump_Tween = get_node("Jump")
+onready var targetPracticeTimer = get_node("TargetPracticeTimer")
 
 var in_combat
 var targetLeft
@@ -39,11 +38,10 @@ var is_hovering = false
 var health = 100
 var is_sliding = false
 var viewRotation
+var shootSequence = false
 
 func _ready():
-	smokeParticles.get_child(0).emitting = false
-	fireParticlesL.emitting = false
-	fireParticlesR.emitting = false
+	pass
 
 func _physics_process(delta):
 	viewRotation = pivotPoint.rotation_degrees+camera.rotation_degrees
@@ -65,11 +63,13 @@ func _physics_process(delta):
 		print(in_combat)
 	
 	if(!is_on_floor()):
-		fireParticlesL.emitting = true
-		fireParticlesR.emitting = true
+		pass
+	#	fireParticlesL.emitting = true
+	#	fireParticlesR.emitting = true
 	else:
-		fireParticlesL.emitting = false
-		fireParticlesR.emitting = false
+		pass
+	#	fireParticlesL.emitting = false
+	#	fireParticlesR.emitting = false
 	
 	#get direction
 	if(movementPressed()):
@@ -105,10 +105,7 @@ func _physics_process(delta):
 		velocity.z = lerp(velocity.z, direction.z * 2 * dodge_speed, delta * 10)
 
 	
-	if(is_on_floor() and Input.is_action_just_pressed("jump")):
-		tween.interpolate_property(self, "translation:y",self.translation[1],self.translation[1]+jump_impulse, 1, Tween.TRANS_QUART,Tween.EASE_OUT)
-		tween.start()
-		smokeParticles.get_child(0).emitting = true
+
 	velocity = move_and_slide(velocity,Vector3.UP)
 	if(!is_on_floor()):
 		play_anim("Aim_Pose")
@@ -124,24 +121,45 @@ func _physics_process(delta):
 	if(Input.is_action_just_pressed("fire")):
 		if(targetLeft!=null):
 			if(targetLeft.is_in_group("Enemy")):
-				var l = laser.instance()
-				l.passParameters(targetLeft)
-				muzzleLeft.add_child(l)
-				l.look_at(targetLeft.global_transform.origin+Vector3(0,2,0),Vector3.UP)
-				l.shoot = true
-				laserSound.play()
+				if(!shootSequence):
+					if(playerVars.is_time_slowed != true):
+						var l = laser.instance()
+						l.passParameters(targetLeft)
+						muzzleLeft.add_child(l)
+						l.look_at(targetLeft.global_transform.origin+Vector3(0,2,0),Vector3.UP)
+						l.shoot = true
+					else:
+						targetLeft.takeDamage(targetLeft.getHealth())
+					laserSound.play()
+					shootSequence = true
+					
+					
+						
+				else:
+					if(playerVars.is_time_slowed != true):
+						var la = laser.instance()
+						muzzleRight.add_child(la)
+						la.look_at(targetRight.global_transform.origin+Vector3(0,2,0),Vector3.UP)
+						la.shoot = true
+					else:
+						targetRight.takeDamage(targetRight.getHealth())
+					laserSound.play()
+					shootSequence = false
 		else:
-			pass
-	if(Input.is_action_just_pressed("fire_secondary")):
-		if(targetRight!=null):
-			if(targetRight.is_in_group("Enemy")):
-				var la = laser.instance()
-				muzzleRight.add_child(la)
-				la.look_at(targetRight.global_transform.origin+Vector3(0,2,0),Vector3.UP)
-				la.shoot = true
-				laserSound.play()
-		else:
-			pass
+			if(Input.is_action_just_pressed("fire_secondary")):
+				targetPracticeTimer.start()
+				playerVars.is_using_targetPractice = true
+				
+#	if(Input.is_action_just_pressed("fire_secondary")):
+#		if(targetRight!=null):
+#			if(targetRight.is_in_group("Enemy")):
+#				var la = laser.instance()
+#				muzzleRight.add_child(la)
+#				la.look_at(targetRight.global_transform.origin+Vector3(0,2,0),Vector3.UP)
+#				la.shoot = true
+#				laserSound.play()
+#		else:
+#			pass
 
 	if(health==0):
 		print("game over")
@@ -177,5 +195,3 @@ func _on_proximityArea_body_entered(body):
 
 
 
-func _on_Jump_tween_completed(object, key):
-	smokeParticles.get_child(0).emitting = false

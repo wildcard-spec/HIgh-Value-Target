@@ -9,6 +9,7 @@ export(float,0.0 ,1.0,0.001) var interpolationSpeed = 0.1
 export(Vector3) var additional_rotation_left = Vector3()
 export(Vector3) var additional_rotation_right = Vector3()
 export(bool) var debug_messages = false
+export(bool) var is_manualAim
 
 var lefthand = "upper_arm_l"
 var righthand = "upper_arm_r"
@@ -131,7 +132,7 @@ func _set_update(new_value):
 
 
 func _on_Left_Hand_Area_body_entered(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy") and !is_manualAim:
 		leftHandArray.append(body)
 		leftHandArray.sort_custom(self,"distance_sort")
 		in_combat = true
@@ -143,7 +144,7 @@ func _on_Akimbo_Area_body_entered(body):
 		in_combat = true
 
 func _on_Right_Hand_Area_body_entered(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy") and !is_manualAim:
 		rightHandArray.append(body)
 		rightHandArray.sort_custom(self,"distance_sort")
 		in_combat = true

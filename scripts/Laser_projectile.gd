@@ -2,7 +2,7 @@ extends RigidBody
 
 var shoot = false
 
-const damage = 2
+const damage = 1
 const speed = 5
 
 var target
@@ -24,7 +24,7 @@ func _process(delta):
 
 func _on_Area_body_entered(body):
 	if(body.is_in_group("Enemy")):
-		body.health -= damage
+		body.takeDamage(damage)
 		queue_free()
 	else:
 		queue_free()

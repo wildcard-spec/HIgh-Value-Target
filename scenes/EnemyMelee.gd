@@ -1,7 +1,8 @@
 extends KinematicBody
 
-var health = 2 setget setHealth, getHealth
+var health = 2 setget takeDamage, getHealth
 onready var Player = get_node("../Player")
+onready var playerVars = get_node("/root/PlayerVariables")
 enum {
 	IDLE,
 	COMBAT,
@@ -23,13 +24,13 @@ func _process(delta):
 			velocity.y = 0
 			velocity = move_and_slide(velocity, Vector3.UP)
 	
-	if(health<0):
+	if(health<=0):
 		queue_free()
 
 
 
-func setHealth(new_value):
-	health = new_value
+func takeDamage(value):
+	health -= value
 	
 
 func getHealth():
