@@ -68,9 +68,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="LITTLEMAN WORKSPACE"
-run/main_scene="res://MainMenu.tscn"
+config/name="High Value Target"
+run/main_scene="res://scenes/playground.tscn"
 config/icon="res://Assets/icon.png"
+
+[autoload]
+
+PlayerVariables="*res://PlayerVariables.gd"
 
 [display]
 
@@ -155,6 +159,7 @@ reset={
 3d_physics/layer_1="environment"
 3d_physics/layer_2="player"
 3d_physics/layer_3="enemies"
+3d_physics/layer_5="player projectile"
 
 [rendering]
 

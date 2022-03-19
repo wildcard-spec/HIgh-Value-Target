@@ -23,6 +23,7 @@ height = 0.443877
 
 [node name="Laser_projectile" type="RigidBody"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0 )
+collision_layer = 2147483664
 collision_mask = 5
 script = ExtResource( 2 )
 
