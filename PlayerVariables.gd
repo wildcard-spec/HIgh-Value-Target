@@ -1,8 +1,10 @@
 extends Node
 
 var is_time_slowed = false
-var is_using_targetPractice = false
-
+var is_TargetPractice_Started = false
+var isTargetPracticeEffectTimerActive = false
+var is_manualAim = true
+var targetPracticeTargets = []
 #boilerplate
 var hp
 var slowmoMeterGauge = 0

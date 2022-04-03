@@ -21,10 +21,10 @@ onready var restLeft = IK.restLeft
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("debug"):
-		indicator.hide()
-	if Input.is_action_just_pressed("castRay"):
-		indicator.show()
+	#	if Input.is_action_just_pressed("debug"):
+	#	indicator.hide()
+#	if Input.is_action_just_pressed("castRay"):
+#		indicator.show()
 #		print("Basis =" + str(Player.global_transform.basis))
 #		Enemy.global_transform.origin.x += 5
 #		print("lefthandArray = " + str(array1))

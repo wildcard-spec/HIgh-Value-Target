@@ -20,6 +20,8 @@ onready var pivotPoint = get_node("Pivot")
 onready var laserSound = get_node("laserSound")
 onready var jump_Tween = get_node("Jump")
 onready var targetPracticeTimer = get_node("TargetPracticeTimer")
+onready var targetPracticeEffectTimer = get_node("TargetPracticeEffectTimer")
+
 
 var in_combat
 var targetLeft
@@ -39,6 +41,7 @@ var health = 100
 var is_sliding = false
 var viewRotation
 var shootSequence = false
+var isTargetPracticeTimerActive = false
 
 func _ready():
 	pass
@@ -60,7 +63,7 @@ func _physics_process(delta):
 		model.look_at(Vector3(pos.x,translation.y,pos.z),Vector3.UP)
 	
 	if(Input.is_action_just_pressed("debug")):
-		print(in_combat)
+		print(PlayerVariables.targetPracticeTargets)
 	
 	if(!is_on_floor()):
 		pass
@@ -145,11 +148,20 @@ func _physics_process(delta):
 						targetRight.takeDamage(targetRight.getHealth())
 					laserSound.play()
 					shootSequence = false
-		else:
-			if(Input.is_action_just_pressed("fire_secondary")):
+	if(Input.is_action_just_pressed("fire_secondary")):
 				targetPracticeTimer.start()
-				playerVars.is_using_targetPractice = true
+				PlayerVariables.is_TargetPractice_Started = true
+				isTargetPracticeTimerActive = true
 				
+	if(isTargetPracticeTimerActive == true and targetPracticeTimer.time_left == 0):
+		targetPracticeEffectTimer.start()
+		isTargetPracticeTimerActive = false
+		PlayerVariables.isTargetPracticeEffectTimerActive = true
+		PlayerVariables.is_TargetPractice_Started = false
+		
+	if(PlayerVariables.isTargetPracticeEffectTimerActive == true and targetPracticeEffectTimer.time_left == 0):
+		PlayerVariables.isTargetPracticeEffectTimerActive = false
+		PlayerVariables.targetPracticeTargets.clear()
 #	if(Input.is_action_just_pressed("fire_secondary")):
 #		if(targetRight!=null):
 #			if(targetRight.is_in_group("Enemy")):

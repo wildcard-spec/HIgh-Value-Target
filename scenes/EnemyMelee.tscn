@@ -59,11 +59,13 @@ script = ExtResource( 5 )
 
 [node name="leftCrosshair" type="MeshInstance" parent="TargetDisplay"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="rightCrosshair" type="MeshInstance" parent="TargetDisplay"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 

@@ -31,7 +31,7 @@ parameters/playback = SubResource( 1 )
 transform = Transform( 8.52024, 0, 0, 0, 0.28547, 0, 0, 0, 30.4303, 0, -0.429388, -5.44628 )
 
 [node name="MeshInstance" parent="Floor" index="0"]
-transform = Transform( 7.16256, 0, 0, 0, 1.03349, 0, 0, 0, 1.74528, -0.232116, -3.503, 0.0498566 )
+transform = Transform( 7.16256, 0, 0, 0, 1.03349, 0, 0, 0, 1.74528, 0.58083, -8.87204, -0.0603006 )
 
 [node name="CollisionShape" parent="Floor" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.162063, -3.503, 0.026824 )
@@ -43,6 +43,9 @@ collision_mask = 3
 [node name="EnemyMelee6" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4945, 0, -9.6397 )
 collision_mask = 3
+
+[node name="leftCrosshair" parent="EnemyMelee6/TargetDisplay" index="0"]
+visible = true
 
 [node name="EnemyMelee2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6745, 0, -9.6397 )
@@ -70,3 +73,5 @@ transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, -11.231
 [editable path="Player"]
 
 [editable path="Floor"]
+
+[editable path="EnemyMelee6"]

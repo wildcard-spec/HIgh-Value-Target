@@ -8,8 +8,8 @@ export(int, "X-up", "Y-up", "Z-up") var look_at_axis = 1
 export(float,0.0 ,1.0,0.001) var interpolationSpeed = 0.1
 export(Vector3) var additional_rotation_left = Vector3()
 export(Vector3) var additional_rotation_right = Vector3()
+onready var player_vars = get_node("/root/PlayerVariables")
 export(bool) var debug_messages = false
-export(bool) var is_manualAim
 
 var lefthand = "upper_arm_l"
 var righthand = "upper_arm_r"
@@ -74,11 +74,6 @@ func _physics_process(_delta):
 	else:
 		change_aim()
 		update_skeleton()
-		if(Input.is_action_just_pressed("debug")):
-			print(targetLeft)
-			print(targetRight)
-			print(leftHandArray)
-			print(rightHandArray)
 	
 func _notification(what):
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
@@ -132,7 +127,7 @@ func _set_update(new_value):
 
 
 func _on_Left_Hand_Area_body_entered(body):
-	if body.is_in_group("Enemy") and !is_manualAim:
+	if body.is_in_group("Enemy") and !PlayerVariables.is_manualAim:
 		leftHandArray.append(body)
 		leftHandArray.sort_custom(self,"distance_sort")
 		in_combat = true
@@ -142,9 +137,11 @@ func _on_Akimbo_Area_body_entered(body):
 		akimboArray.append(body)
 		akimboArray.sort_custom(self,"distance_sort")
 		in_combat = true
-
+		if(PlayerVariables.is_manualAim and PlayerVariables.is_TargetPractice_Started):
+			PlayerVariables.targetPracticeTargets.append(body)
+			
 func _on_Right_Hand_Area_body_entered(body):
-	if body.is_in_group("Enemy") and !is_manualAim:
+	if body.is_in_group("Enemy") and !PlayerVariables.is_manualAim:
 		rightHandArray.append(body)
 		rightHandArray.sort_custom(self,"distance_sort")
 		in_combat = true
@@ -215,13 +212,7 @@ func update_left() ->void:
 			restLeft.basis = restLeft.basis.rotated(restLeft.basis.x, deg2rad(additional_rotation_left.x))
 			restLeft.basis = restLeft.basis.rotated(restLeft.basis.y, deg2rad(additional_rotation_left.y))
 			restLeft.basis = restLeft.basis.rotated(restLeft.basis.z, deg2rad(additional_rotation_left.z))
-		skeleton_to_use.set_bone_global_pose_override(boneLeft, restLeft, 1, true)
-			
-	if(Input.is_action_just_pressed("debug")):
-		print("lefthandArray = " + str(leftHandArray))
-		print("rightHandArray = " + str(rightHandArray))
-		print("akimboArray = " + str(akimboArray))
-	
+		skeleton_to_use.set_bone_global_pose_override(boneLeft, restLeft, 1, true)	
 
 func update_right() ->void:
 	if(skeleton_to_use!=null):
@@ -240,10 +231,6 @@ func update_right() ->void:
 			restRight.basis = restRight.basis.rotated(restRight.basis.y, deg2rad(additional_rotation_right.y))
 			restRight.basis = restRight.basis.rotated(restRight.basis.z, deg2rad(additional_rotation_right.z))
 		skeleton_to_use.set_bone_global_pose_override(boneRight, restRight, 1, true)
-	
-	if(Input.is_action_just_pressed("debug")):
-			print(target_pos_right)
-			print(Player.global_transform.origin)
 
 func combat_check():
 	if(!akimboArray.empty() or !leftHandArray.empty() or !rightHandArray.empty()):

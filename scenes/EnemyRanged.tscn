@@ -6,39 +6,39 @@
 [ext_resource path="res://scenes/crosshairRight.png" type="Texture" id=7]
 [ext_resource path="res://enemy_model.tscn" type="PackedScene" id=8]
 
-[sub_resource type="SpatialMaterial" id=14]
+[sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=2]
 size = Vector3( 0.25, 2, 0.5 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.141176, 0.968627, 0.172549, 1 )
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=4]
 radius = 0.750402
 height = 1.3621
 
-[sub_resource type="QuadMesh" id=9]
+[sub_resource type="QuadMesh" id=5]
 size = Vector2( 1.5, 1.5 )
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=6]
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 1
 albedo_texture = ExtResource( 6 )
 
-[sub_resource type="QuadMesh" id=11]
+[sub_resource type="QuadMesh" id=7]
 size = Vector2( 1.5, 1.5 )
 
-[sub_resource type="SpatialMaterial" id=12]
+[sub_resource type="SpatialMaterial" id=8]
 flags_transparent = true
 flags_unshaded = true
 params_blend_mode = 1
 params_billboard_mode = 1
 albedo_texture = ExtResource( 7 )
 
-[sub_resource type="CylinderShape" id=13]
+[sub_resource type="CylinderShape" id=9]
 radius = 16.5326
 height = 18.3404
 
@@ -54,7 +54,7 @@ script = ExtResource( 1 )
 transform = Transform( -17.5152, 1.53123e-06, 1.67117e-13, 0, -2.08798e-06, 16.0357, 1.53123e-06, 17.5152, 1.9116e-06, 0, 1.01153, -3.4679e-10 )
 
 [node name="Polyhuman" parent="EnemyModel" index="0"]
-material/0 = SubResource( 14 )
+material/0 = SubResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="EnemyModel"]
 transform = Transform( 0.999647, 0.0130708, 0.0231188, -0.0130699, -0.515661, 0.856692, 0.023119, -0.856692, -0.515309, -0.0222208, -0.00803475, -0.00426149 )
@@ -62,15 +62,15 @@ bone_name = "Finger01.R"
 
 [node name="MeshInstance" type="MeshInstance" parent="EnemyModel/BoneAttachment"]
 transform = Transform( 0.0182899, -0.00373134, -0.00200123, 0.00396853, 0.0186636, 0.000846856, 0.00240004, 0.00231704, 0.0170654, 0.00295648, 0.0107683, 0.00296886 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
 
 [node name="BeamStartPoint" type="Spatial" parent="EnemyModel"]
 transform = Transform( 0.1, 5.32907e-15, 1.05879e-22, -5.32907e-15, 0.1, 0, -1.05879e-22, 0, 0.1, -1.08289e-09, -0.0123868, 0.0444494 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.86115e-07, -1.14237, 0, 1, -1.62921e-07, 0, 0.949724, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="TargetDisplay" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21924, 0 )
@@ -78,19 +78,21 @@ script = ExtResource( 4 )
 
 [node name="leftCrosshair" type="MeshInstance" parent="TargetDisplay"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 9 )
-material/0 = SubResource( 10 )
+visible = false
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
 
 [node name="rightCrosshair" type="MeshInstance" parent="TargetDisplay"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 11 )
-material/0 = SubResource( 12 )
+visible = false
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
 
 [node name="Area" type="Area" parent="."]
 
 [node name="CollisionShape2" type="CollisionShape" parent="Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-shape = SubResource( 13 )
+shape = SubResource( 9 )
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.3

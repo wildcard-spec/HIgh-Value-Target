@@ -15,16 +15,6 @@ func _physics_process(delta):
 		var collider = intersection.collider
 		if(pastCollider!=null and pastCollider!= collider):
 			pastCollider.set_layer_mask_bit(4, false)
-		if(Input.is_action_just_pressed("debug")):
-			print(collider.get_layer_mask_bit(0))
-			print(collider.get_layer_mask_bit(1))
-			print(collider.get_layer_mask_bit(2))
-			print(collider.get_layer_mask_bit(3))
-			print(collider.get_layer_mask_bit(4))
-			print(collider.get_layer_mask_bit(5))
-			print(collider.get_layer_mask_bit(6))
-			print(collider.get_layer_mask_bit(7))
-			print(collider.get_layer_mask_bit(8))
 		if(!collider.is_in_group("Player")):
 			if(collider.get_layer_mask_bit(3)):
 				collider.set_layer_mask_bit(4, true)
