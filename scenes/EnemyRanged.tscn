@@ -77,8 +77,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21924, 0 )
 script = ExtResource( 4 )
 
 [node name="leftCrosshair" type="MeshInstance" parent="TargetDisplay"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-visible = false
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 

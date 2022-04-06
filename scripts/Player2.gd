@@ -125,14 +125,17 @@ func _physics_process(delta):
 		if(targetLeft!=null):
 			if(targetLeft.is_in_group("Enemy")):
 				if(!shootSequence):
-					if(playerVars.is_time_slowed != true):
+					if(!PlayerVariables.isTargetPracticeEffectTimerActive):
 						var l = laser.instance()
 						l.passParameters(targetLeft)
 						muzzleLeft.add_child(l)
 						l.look_at(targetLeft.global_transform.origin+Vector3(0,2,0),Vector3.UP)
 						l.shoot = true
 					else:
-						targetLeft.takeDamage(targetLeft.getHealth())
+						for target in PlayerVariables.targetPracticeTargets:
+							if(target!=null):
+								target.takeDamage(target.getHealth())
+						#targetLeft.takeDamage(targetLeft.getHealth())
 					laserSound.play()
 					shootSequence = true
 					

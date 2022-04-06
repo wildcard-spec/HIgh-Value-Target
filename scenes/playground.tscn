@@ -44,8 +44,8 @@ collision_mask = 3
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4945, 0, -9.6397 )
 collision_mask = 3
 
-[node name="leftCrosshair" parent="EnemyMelee6/TargetDisplay" index="0"]
-visible = true
+[node name="TargetDisplay" parent="EnemyMelee6" index="2"]
+visible = false
 
 [node name="EnemyMelee2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6745, 0, -9.6397 )

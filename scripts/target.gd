@@ -22,21 +22,15 @@ func _process(delta):
 		
 	if(IK!=null and PlayerVariables.is_manualAim):
 		if(PlayerVariables.isTargetPracticeEffectTimerActive and PlayerVariables.targetPracticeTargets.has(enemySelf)):
-			var leftPos = leftCrosshair.global_transform.origin.direction_to(camera.global_transform.origin)
-			leftPos.y = 1.6
-			leftCrosshair.global_transform.origin = enemySelf.global_transform.origin + leftPos
 			leftCrosshair.show()
 			self.show()
 		if(PlayerVariables.isTargetPracticeEffectTimerActive == false):
-			print("we get here")
 			self.hide()
 	#elif(targetRight==enemySelf and IK!=null and PlayerVariables.is_manualAim):
 	#	leftCrosshair.hide()
-	#	var rightPos = rightCrosshair.global_transform.origin.direction_to(camera.global_transform.origin)
-	#	rightPos.y = 1.6
-	#	rightCrosshair.global_transform.origin = enemySelf.global_transform.origin + rightPos
 	#	rightCrosshair.show()
 	elif(IK!=null):
+		self.hide()
 		leftCrosshair.hide()
 		rightCrosshair.hide()
 		
