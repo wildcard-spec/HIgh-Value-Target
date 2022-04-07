@@ -2,6 +2,7 @@ extends Node
 
 var is_time_slowed = false
 var is_TargetPractice_Started = false
+var isTargetPracticeTimerActive = false
 var isTargetPracticeEffectTimerActive = false
 var is_manualAim = true
 var targetPracticeTargets = []

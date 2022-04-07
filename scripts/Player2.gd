@@ -41,7 +41,6 @@ var health = 100
 var is_sliding = false
 var viewRotation
 var shootSequence = false
-var isTargetPracticeTimerActive = false
 
 func _ready():
 	pass
@@ -154,11 +153,11 @@ func _physics_process(delta):
 	if(Input.is_action_just_pressed("fire_secondary")):
 				targetPracticeTimer.start()
 				PlayerVariables.is_TargetPractice_Started = true
-				isTargetPracticeTimerActive = true
+				PlayerVariables.isTargetPracticeTimerActive = true
 				
-	if(isTargetPracticeTimerActive == true and targetPracticeTimer.time_left == 0):
+	if(PlayerVariables.isTargetPracticeTimerActive == true and targetPracticeTimer.time_left == 0):
 		targetPracticeEffectTimer.start()
-		isTargetPracticeTimerActive = false
+		PlayerVariables.isTargetPracticeTimerActive = false
 		PlayerVariables.isTargetPracticeEffectTimerActive = true
 		PlayerVariables.is_TargetPractice_Started = false
 		

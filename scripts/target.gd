@@ -21,15 +21,15 @@ func _process(delta):
 		leftCrosshair.show()
 		
 	if(IK!=null and PlayerVariables.is_manualAim):
-		if(PlayerVariables.isTargetPracticeEffectTimerActive and PlayerVariables.targetPracticeTargets.has(enemySelf)):
+		if(PlayerVariables.targetPracticeTargets.has(enemySelf)):
 			leftCrosshair.show()
 			self.show()
-		if(PlayerVariables.isTargetPracticeEffectTimerActive == false):
+		if(PlayerVariables.isTargetPracticeEffectTimerActive == false || PlayerVariables.isTargetPracticeTimerActive == false):
 			self.hide()
 	#elif(targetRight==enemySelf and IK!=null and PlayerVariables.is_manualAim):
 	#	leftCrosshair.hide()
 	#	rightCrosshair.show()
-	elif(IK!=null):
+	elif(IK==null):
 		self.hide()
 		leftCrosshair.hide()
 		rightCrosshair.hide()
